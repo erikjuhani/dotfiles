@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
 " General plugins
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'
+Plug 'Lokaltog/vim-easymotion'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -155,10 +156,10 @@ function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
 
-  let height = float2nr(10)
-  let width = float2nr(80)
+  let height = float2nr(&lines * 0.8)
+  let width = float2nr(&columns * 0.8)
   let horizontal = float2nr((&columns - width) / 2)
-  let vertical = 1
+  let vertical = 0
 
   let opts = {
         \ 'relative': 'editor',
@@ -174,3 +175,13 @@ endfunction
 
 nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+
+" easymotion
+nmap <leader>g <Plug>(easymotion-bd-w)
+let g:EasyMotion_smartcase = 1 " turn on case insensitive feature
+let g:EasyMotion_do_mapping = 0 " disable default mappings
+let g:EasyMotion_use_smartsign_us = 1 " 1 will match 1 and !
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_enter_jump_first = 1
