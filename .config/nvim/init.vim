@@ -43,7 +43,6 @@ Plug 'fatih/vim-go'                                        " Go support
 Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
 Plug 'dag/vim-fish'                                        " Fish syntax highlighting
-Plug 'leafgarland/typescript-vim'                          " TypeScript syntax highlighting
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
 "
 "------------------------ COC ------------------------
@@ -101,6 +100,14 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'test']
+
+" Build/Test on save.
+augroup auto_go
+	autocmd!
+	autocmd BufWritePost *.go :GoBuild
+	autocmd BufWritePost *_test.go :GoTest
+augroup end
 
 "----------------------------------------------
 " Language: CSS

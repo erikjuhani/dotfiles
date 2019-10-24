@@ -33,5 +33,3 @@ filetype plugin on
 
 syntax enable
 colorscheme monokai
-
-set guifont=FiraCode:h22
