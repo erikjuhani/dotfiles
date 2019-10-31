@@ -45,6 +45,9 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
 Plug 'dag/vim-fish'                                        " Fish syntax highlighting
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
 
+" Git blame
+Plug 'jcartledge/git-blame-nvim'
+
 "------------------------ COC ------------------------
 " coc for tslinting, auto complete and prettier
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
