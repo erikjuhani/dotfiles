@@ -8,7 +8,7 @@ DESTINATION_CONFIG_PATH=$HOME/.config
 
 # .vimrc
 rm $HOME/.vimrc
-ln -s $CONFIG_PATH/.vimrc $HOME/.vimrc
+ln -s $BASE_PATH/.vimrc $HOME/.vimrc
 
 # nvim
 rm -r $DESTINATION_CONFIG_PATH/nvim
