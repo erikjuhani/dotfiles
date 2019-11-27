@@ -46,11 +46,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 
 " Language support
-Plug 'fatih/vim-go'                                        " Go support
+" Plug 'fatih/vim-go'                                        " Go support
 Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
 Plug 'dag/vim-fish'                                        " Fish syntax highlighting
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
+Plug 'sheerun/vim-polyglot'
 
 "------------------------ COC ------------------------
 " coc for tslinting, auto complete and prettier
@@ -59,12 +60,12 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "------------------------ VIM TSX ------------------------
 " by default, if you open tsx file, neovim does not show syntax colors
 " vim-tsx will do all the coloring for jsx in the .tsx file
-Plug 'ianks/vim-tsx'
+" Plug 'ianks/vim-tsx'
 
 "------------------------ VIM TSX ------------------------
 " by default, if you open tsx file, neovim does not show syntax colors
 " typescript-vim will do all the coloring for typescript keywords
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -149,10 +150,10 @@ au FileType python set tabstop=4
 "----------------------------------------------
 " Language: TypeScript
 "----------------------------------------------
-au FileType typescript set expandtab
-au FileType typescript set shiftwidth=2
-au FileType typescript set softtabstop=2
-au FileType typescript set tabstop=2
+"au FileType typescript set expandtab
+"au FileType typescript set shiftwidth=2
+"au FileType typescript set softtabstop=2
+"au FileType typescript set tabstop=2
 
 "----------------------------------------------
 " Language: YAML
