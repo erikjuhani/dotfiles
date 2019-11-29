@@ -39,7 +39,7 @@ endif
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/vim-easymotion'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 " Improved motion in Vim
