@@ -85,6 +85,8 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+au FileType typescript nnoremap <silent> gd :TSDef<CR>
+au FileType typescript.tsx nnoremap <silent> gd :TSDef<CR>
 
 "----------------------------------------------
 " Language: Golang
