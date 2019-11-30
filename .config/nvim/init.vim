@@ -36,6 +36,9 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+Plug 'Yggdroot/indentLine'
+Plug 'morhetz/gruvbox'
+
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/vim-easymotion'
 
@@ -70,6 +73,11 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 set encoding=UTF-8
+
+" Theme
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
 " coc extensions
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']

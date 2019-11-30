@@ -12,7 +12,7 @@ set completeopt-=preview          " remove the horrendous preview window
 set encoding=utf-8
 set expandtab                     " expands tabs to spaces
 set list                          " show trailing whitespace
-set listchars=tab:»·,trail:·,eol:¬,extends:#
+set listchars=tab:»·,trail:·,eol:¬,extends:#,space:·
 set nospell                       " disable spelling
 set noswapfile                    " disable swapfile usage
 set nowrap
@@ -32,4 +32,3 @@ filetype plugin on
 "----------------------------------------------
 
 syntax enable
-colorscheme monokai
