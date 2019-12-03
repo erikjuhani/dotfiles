@@ -6,6 +6,9 @@ BASE_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 CONFIG_PATH=$BASE_PATH/.config
 DESTINATION_CONFIG_PATH=$HOME/.config
 
+# fish config
+ln -s $CONFIG_PATH/fish/config.fish $DESTINATION_CONFIG_PATH/fish/config.fish
+
 # .vimrc
 rm $HOME/.vimrc
 ln -s $BASE_PATH/.vimrc $HOME/.vimrc

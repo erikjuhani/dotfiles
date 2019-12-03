@@ -11,7 +11,6 @@ if empty(glob("~/.vim/autoload/plug.vim"))
     command InstallPlug call InstallPlug()
 endif
 
-let g:mapleader=' '
 "
 " === Completion Settings === "
 
@@ -49,26 +48,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 
 " Language support
-" Plug 'fatih/vim-go'                                        " Go support
+Plug 'fatih/vim-go'                                        " Go support
 Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
 Plug 'dag/vim-fish'                                        " Fish syntax highlighting
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
 Plug 'sheerun/vim-polyglot'
 
 "------------------------ COC ------------------------
 " coc for tslinting, auto complete and prettier
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-"------------------------ VIM TSX ------------------------
-" by default, if you open tsx file, neovim does not show syntax colors
-" vim-tsx will do all the coloring for jsx in the .tsx file
-" Plug 'ianks/vim-tsx'
-
-"------------------------ VIM TSX ------------------------
-" by default, if you open tsx file, neovim does not show syntax colors
-" typescript-vim will do all the coloring for typescript keywords
-" Plug 'leafgarland/typescript-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -80,7 +69,13 @@ let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 " coc extensions
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
+let g:coc_global_extensions = [
+ \ 'coc-tslint-plugin',
+ \ 'coc-tsserver',
+ \ 'coc-css',
+ \ 'coc-html',
+ \ 'coc-json',
+ \ 'coc-prettier']
 
 " Airline symbols
 let g:airline_powerline_fonts = 1
@@ -93,8 +88,8 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-au FileType typescript nnoremap <silent> gd :TSDef<CR>
-au FileType typescript.tsx nnoremap <silent> gd :TSDef<CR>
+au FileType typescript nmap <silent> gd <Plug>(coc-definition)
+au FileType typescript.tsx nmap <silent> gd <Plug>(coc-definition)
 
 "----------------------------------------------
 " Language: Golang
@@ -216,7 +211,7 @@ nnoremap <silent> <C-p> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 " easymotion
-nmap <leader>g <Plug>(easymotion-bd-w)
+nmap <Space><Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1 " turn on case insensitive feature
 let g:EasyMotion_do_mapping = 0 " disable default mappings
 let g:EasyMotion_use_smartsign_us = 1 " 1 will match 1 and !
