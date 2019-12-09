@@ -70,7 +70,7 @@ colorscheme gruvbox
 
 " coc extensions
 let g:coc_global_extensions = [
- \ 'coc-tslint-plugin',
+ \ 'coc-eslint',
  \ 'coc-tsserver',
  \ 'coc-css',
  \ 'coc-html',
