@@ -1,4 +1,9 @@
 {
-  "tslint.enable": true,
-  "tslint.autoFixOnSave": true
+  "languageserver": {
+     "golang": {
+         "command": "gopls",
+         "rootPatterns": ["go.mod", ".vim/", ".git/"],
+         "filetypes": ["go"]
+     }
+  }
 }
