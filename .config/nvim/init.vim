@@ -49,6 +49,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Language support
 Plug 'fatih/vim-go'                                        " Go support
+Plug 'reasonml-editor/vim-reason-plus'                     " Reason support
 " Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
 Plug 'dag/vim-fish'                                        " Fish syntax highlighting
@@ -72,6 +73,7 @@ colorscheme gruvbox
 let g:coc_global_extensions = [
  \ 'coc-eslint',
  \ 'coc-tsserver',
+ \ 'coc-reason',
  \ 'coc-css',
  \ 'coc-html',
  \ 'coc-json',
