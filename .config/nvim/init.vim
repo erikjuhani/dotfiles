@@ -69,6 +69,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
+let g:polyglot_disabled = ['markdown']
+
 " coc extensions
 let g:coc_global_extensions = [
  \ 'coc-eslint',
