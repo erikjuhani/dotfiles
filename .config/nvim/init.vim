@@ -75,6 +75,7 @@ let g:polyglot_disabled = ['markdown']
 let g:coc_global_extensions = [
  \ 'coc-eslint',
  \ 'coc-tsserver',
+ \ 'coc-prettier',
  \ 'coc-reason',
  \ 'coc-css',
  \ 'coc-html',
