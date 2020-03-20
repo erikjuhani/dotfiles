@@ -82,6 +82,8 @@ let g:coc_global_extensions = [
  \ 'coc-json',
  \ 'coc-prettier']
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Airline symbols
 let g:airline_powerline_fonts = 1
 "let g:airline#extensions#ale#enabled = 1
