@@ -3,7 +3,12 @@
      "golang": {
          "command": "gopls",
          "rootPatterns": ["go.mod", ".vim/", ".git/"],
-         "filetypes": ["go"]
+         "filetypes": ["go"],
+         "initializationOptions": {
+           "gocodeCompletionEnabled": true,
+           "diagnosticsEnabled": true,
+           "lintTool": "golint"
+         }
      }
   }
 }
