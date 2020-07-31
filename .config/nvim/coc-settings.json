@@ -1,4 +1,10 @@
 {
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "typescriptreact",
@@ -6,16 +12,22 @@
     "javascriptreact",
     "json"
   ],
+  "eslint.quiet": false,
+  "diagnostic.errorSign": ">>",
+  "diagnostic.warningSign": "--",
+  "diagnostic.infoSign": "oo",
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
   "languageserver": {
-     "golang": {
-         "command": "gopls",
-         "rootPatterns": ["go.mod", ".vim/", ".git/"],
-         "filetypes": ["go"],
-         "initializationOptions": {
-           "gocodeCompletionEnabled": true,
-           "diagnosticsEnabled": true,
-           "lintTool": "golint"
-         }
-     }
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
+    }
   }
 }

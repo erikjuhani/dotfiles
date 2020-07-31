@@ -35,6 +35,24 @@ call plug#begin('~/.vim/plugged')
 "  Plug 'roxma/vim-hug-neovim-rpc'
 "endif
 
+Plug 'dense-analysis/ale'
+
+Plug 'janko/vim-test', {
+        \ 'for': [
+            \ 'javascript',
+            \ 'typescript',
+            \ 'go',
+            \ 'c',
+            \ 'cpp'
+        \ ],
+        \ 'on': [
+            \ 'TestNearest',
+            \ 'TestFile',
+            \ 'TestSuite',
+            \ 'TestLast',
+            \ 'TestVisit'
+        \ ] }
+
 Plug 'Yggdroot/indentLine'
 Plug 'morhetz/gruvbox'
 
@@ -58,7 +76,7 @@ Plug 'sheerun/vim-polyglot'
 
 "------------------------ COC ------------------------
 " coc for tslinting, auto complete and prettier
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 call plug#end()
 
@@ -73,20 +91,29 @@ let g:polyglot_disabled = ['markdown']
 
 " coc extensions
 let g:coc_global_extensions = [
- \ 'coc-eslint',
  \ 'coc-tsserver',
- \ 'coc-prettier',
  \ 'coc-reason',
  \ 'coc-css',
  \ 'coc-html',
  \ 'coc-json',
- \ 'coc-prettier']
+ \ 'coc-prettier',
+ \ 'coc-eslint',
+ \ ]
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" Airline symbols
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Airline 
+" Do not draw separators for empty sections (only for the active window) >
+let g:airline_skip_empty_sections = 1
+" Enable powerline fonts
 let g:airline_powerline_fonts = 1
-"let g:airline#extensions#ale#enabled = 1
+" Enable caching of syntax highlighting groups
+let g:airline_highlighting_cache = 1
+
+let g:airline#extensions#hunks#enabled = 0
 
 " deoplete settings
 let g:deoplete#enable_at_startup = 1
