@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " Make neovim use Vim config files for compatibility
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -11,6 +13,8 @@ if empty(glob("~/.vim/autoload/plug.vim"))
     command InstallPlug call InstallPlug()
 endif
 
+source ~/.config/nvim/plugins.vim
+
 "
 " === Completion Settings === "
 
@@ -18,67 +22,10 @@ endif
 " or 'The only match'
 set shortmess+=c
 
+" Only one line for command line
+set cmdheight=1
+
 set ma
-
-"----------------------------------------------
-" Plugins settings
-"----------------------------------------------
-
-call plug#begin('~/.vim/plugged')
-
-" General plugins
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-
-Plug 'dense-analysis/ale'
-
-Plug 'janko/vim-test', {
-        \ 'for': [
-            \ 'javascript',
-            \ 'typescript',
-            \ 'go',
-            \ 'c',
-            \ 'cpp'
-        \ ],
-        \ 'on': [
-            \ 'TestNearest',
-            \ 'TestFile',
-            \ 'TestSuite',
-            \ 'TestLast',
-            \ 'TestVisit'
-        \ ] }
-
-Plug 'Yggdroot/indentLine'
-Plug 'morhetz/gruvbox'
-
-Plug 'bling/vim-airline'
-Plug 'Lokaltog/vim-easymotion'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
-
-" Language support
-Plug 'fatih/vim-go'                                        " Go support
-Plug 'reasonml-editor/vim-reason-plus'                     " Reason support
-" Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-" Plug 'zchee/deoplete-go', { 'do': 'make'}                  " Go auto completion
-Plug 'dag/vim-fish'                                        " Fish syntax highlighting
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " TypeScript auto completion
-Plug 'sheerun/vim-polyglot'
-
-"------------------------ COC ------------------------
-" coc for tslinting, auto complete and prettier
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
-call plug#end()
 
 set encoding=UTF-8
 
@@ -107,13 +54,18 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Airline 
 " Do not draw separators for empty sections (only for the active window) >
-let g:airline_skip_empty_sections = 1
+" let g:airline_skip_empty_sections = 1
 " Enable powerline fonts
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 " Enable caching of syntax highlighting groups
-let g:airline_highlighting_cache = 1
+" let g:airline_highlighting_cache = 1
+" let g:airline#extensions#hunks#enabled = 0
 
-let g:airline#extensions#hunks#enabled = 0
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
 
 " deoplete settings
 let g:deoplete#enable_at_startup = 1
