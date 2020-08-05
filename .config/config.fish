@@ -5,5 +5,3 @@
 
 # set the workspace path
 set -x GOPATH $HOME/go
-
-echo "IM FISH CONFIG"

@@ -24,8 +24,42 @@ set formatoptions=tcqronj         " set vims text formatting options
 set softtabstop=1
 set laststatus=2
 set tabstop=1
-set title                         " let vim set the terminal title
-set updatetime=750                " redraw the status bar often
+
+" Don't give completion messages like 'match 1 of 2'
+" or 'The only match'
+set shortmess+=c
+
+" Only one line for command line
+set cmdheight=2
+
+set ma
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Don't give completion messages like 'match 1 of 2'
+" or 'The only match'
+set shortmess+=c
+
+" Only one line for command line
+set cmdheight=1
+
+set ma
+
+set encoding=UTF-8
+
+" Let vim set the terminal title
+set title
+
+set noshowmode
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 filetype plugin on
 
 "----------------------------------------------
