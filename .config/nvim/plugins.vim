@@ -29,8 +29,8 @@ Plug 'junegunn/fzf.vim'
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
 
-" Go
-Plug 'fatih/vim-go'                                        " Go support
+" Go support
+Plug 'fatih/vim-go'
 
 " Language pack collection
 Plug 'sheerun/vim-polyglot'
