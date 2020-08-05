@@ -81,6 +81,8 @@ set noshowmode
 " delays and poor user experience.
 set updatetime=300
 
+set clipboard=unnamedplus
+
 " Enable file type detection
 filetype plugin on
 
