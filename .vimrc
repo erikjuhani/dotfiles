@@ -41,17 +41,6 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Don't give completion messages like 'match 1 of 2'
-" or 'The only match'
-set shortmess+=c
-
-" Only one line for command line
-set cmdheight=1
-
-set ma
-
-set encoding=UTF-8
-
 " Let vim set the terminal title
 set title
 
