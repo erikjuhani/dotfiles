@@ -23,24 +23,19 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 " Fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
 
-"==========================
-"==== LANGUAGE SUPPORT ====
-"==========================
-
 " Go
 Plug 'fatih/vim-go'                                        " Go support
-" Fish
-" Plug 'dag/vim-fish'                                        " Fish syntax highlighting
+
 " Language pack collection
 Plug 'sheerun/vim-polyglot'
 
 " Conquer of Completion - intellisense engine
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> coc#util#install() } }
 
 call plug#end()
