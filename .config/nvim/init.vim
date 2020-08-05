@@ -14,6 +14,7 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 
 source ~/.config/nvim/plugins.vim
+source ~/.config/nvim/keymaps.vim
 
 " Theme
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
