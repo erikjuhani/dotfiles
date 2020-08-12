@@ -81,7 +81,10 @@ set noshowmode
 " delays and poor user experience.
 set updatetime=300
 
+" Enable pasting from outside buffer
 set clipboard=unnamedplus
+
+set completeopt-=preview
 
 " Enable file type detection
 filetype plugin on
