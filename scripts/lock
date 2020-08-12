@@ -1,0 +1,48 @@
+#!/bin/bash
+tempscreen=/tmp/screenshot.png
+t=/tmp/screenshot.jpg
+# Needs icons directory and resolutions file
+config=$HOME/.config/lock
+
+scrot $t 
+convert $t -scale 600x384 -scale 6000x3840\! $tempscreen
+
+if [ ! -f $config/resolutions ]; then
+    xoutput=$(xrandr --query | grep ' connected' | grep -v 'connected (normal' | sed 's/primary //' | cut -f3 -d' ')
+    mkdir -p $config
+    touch $config/resolutions
+    for resolution in $xoutput
+    do
+        echo $resolution >> $config/resolutions
+    done
+fi
+
+if [[ -d $config/icons ]]
+ then
+    icon=$(shuf -ezn 1 $config/icons/*.png | xargs -0 -n1 echo)
+
+    # placement x/y
+    PX=0
+    PY=0
+    # lockscreen image info
+    R=$(file $icon | grep -o '[0-9]* x [0-9]*')
+    RX=$(echo $R | cut -d' ' -f 1)
+    RY=$(echo $R | cut -d' ' -f 3)
+
+    SR=$(cat $config/resolutions)
+    for RES in $SR
+    do
+        # monitor position/offset
+        SRX=$(echo $RES | cut -d'x' -f 1)                   # x pos
+        SRY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
+        SROX=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
+        SROY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
+        PX=$(($SROX + $SRX/2 - $RX/2))
+        PY=$(($SROY + $SRY/2 - $RY/2))
+
+        convert $tempscreen $icon -geometry +$PX+$PY -composite -matte $tempscreen
+    done
+fi
+
+i3lock -e -u -n -i $tempscreen
+rm $tempscreen

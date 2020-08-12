@@ -1,0 +1,17 @@
+#!/bin/bash
+declare -A outputs
+
+connectedOutputs=$(xrandr | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+
+# Make into proper array
+connectedOutputs=($connectedOutputs)
+
+displayAmount=${#connectedOutputs[@]}
+
+echo $displayAmount
+
+if (( ${#connectedOutputs[@]} )); then
+        xrandr --output "DP2" --rotate right --primary --pos 0x600 --output "DP1" --rotate normal --left-of "DP2" --output "eDP1" --off
+else
+        xrandr --output "eDP1" --primary --on
+fi
