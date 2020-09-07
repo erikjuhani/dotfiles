@@ -30,12 +30,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 
 " Go support
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
 " Language pack collection
 Plug 'sheerun/vim-polyglot'
 
 " Conquer of Completion - intellisense engine
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> coc#util#install() } }
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()

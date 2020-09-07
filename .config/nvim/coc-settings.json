@@ -23,6 +23,7 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/"],
       "filetypes": ["go"],
+      "disableWorkspaceFolders": true,
       "initializationOptions": {
         "gocodeCompletionEnabled": true,
         "diagnosticsEnabled": true,
