@@ -53,6 +53,7 @@ let g:polyglot_disabled = ['markdown']
 " ░╚════╝░░╚════╝░░╚════╝░
 
 let g:coc_global_extensions = [
+    \ 'coc-python',
     \ 'coc-tsserver',
     \ 'coc-css',
     \ 'coc-html',

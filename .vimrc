@@ -53,6 +53,8 @@ set hidden
 " Some servers have issues with backup files, see #649.
 set nobackup
 
+set backupcopy=yes
+
 " Do not write a backup before overwriting
 set nowritebackup
 
