@@ -18,6 +18,7 @@
   "diagnostic.infoSign": "oo",
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
+  "python.linting.pylintArgs": ["--extension-pkg-whitelist=cv2"],
   "languageserver": {
     "golang": {
       "command": "gopls",
