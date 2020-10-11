@@ -88,6 +88,9 @@ set clipboard=unnamedplus
 
 set completeopt-=preview
 
+" Always show the signcolumn, otherwise it would shift the text each time
+set signcolumn=yes
+
 " Enable file type detection
 filetype plugin on
 

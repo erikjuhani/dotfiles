@@ -93,7 +93,6 @@ au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
-" vim-go uses imports now
 let g:go_fmt_command = "goimports"
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -106,6 +105,7 @@ let g:go_highlight_interfaces = 0
 let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
+let g:go_list_type = 'quickfix'
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'test']
 
 " disable vim-go :GoDef short cut (gd)
@@ -114,10 +114,16 @@ let g:go_def_mapping_enabled = 0
 
 " Build/Test on save.
 augroup auto_go
-	autocmd!
-	autocmd BufWritePost *.go :GoBuild
-	autocmd BufWritePost *_test.go :GoTest
+  autocmd!
+  autocmd BufWritePost *.go :GoBuild
+  autocmd BufWritePost *_test.go :GoTest
 augroup end
+
+" Quit anyway if the quickfix window is the only one left
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
+aug END
 
 "----------------------------------------------
 " Language: CSS
