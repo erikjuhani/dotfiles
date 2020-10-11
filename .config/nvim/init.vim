@@ -7,6 +7,9 @@
 
 scriptencoding utf-8
 
+" Disable markdown funkiness
+let g:polyglot_disabled = ['markdown']
+
 " Make neovim use Vim config files for compatibility
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -41,9 +44,6 @@ augroup resume_edit_position
         \ | execute "normal! g`\"zvzz"
         \ | endif
 augroup END
-
-" Disable markdown funkiness
-let g:polyglot_disabled = ['markdown']
 
 " ░█████╗░░█████╗░░█████╗░
 " ██╔══██╗██╔══██╗██╔══██╗
