@@ -5,3 +5,6 @@
 
 # set the workspace path
 set -x GOPATH $HOME/go
+
+# set node
+set -g fish_user_paths "/usr/local/opt/node@14/bin" $fish_user_paths
