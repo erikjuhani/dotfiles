@@ -7,9 +7,6 @@
 
 call plug#begin('~/.vim/plugged')
 
-" TODO: Look into why coc eslinter does not work correctly
-Plug 'dense-analysis/ale'
-
 " Wrapper to run tests
 Plug 'vim-test/vim-test'
 
@@ -32,10 +29,16 @@ Plug 'easymotion/vim-easymotion'
 " Go support
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
-" Language pack collection
-Plug 'sheerun/vim-polyglot'
+" Shell script syntax highlight
+Plug 'arzg/vim-sh'
+
+" Dockerfile syntax highlight
+Plug 'ekalinin/Dockerfile.vim'
+
+" Nginx syntax highlight
+Plug 'chr4/nginx.vim'
 
 " Conquer of Completion - intellisense engine
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()

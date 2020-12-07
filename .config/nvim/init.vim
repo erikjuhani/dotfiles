@@ -7,9 +7,6 @@
 
 scriptencoding utf-8
 
-" Disable markdown funkiness
-let g:polyglot_disabled = ['markdown']
-
 " Make neovim use Vim config files for compatibility
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -75,11 +72,12 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " ░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ }
+  \ 'colorscheme': 'gruvbox',
+  \ }
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:gruvbox_contrast_dark = 'hard'
+
 colorscheme gruvbox
 
 "----------------------------------------------
@@ -126,6 +124,12 @@ aug QFClose
 aug END
 
 "----------------------------------------------
+" Language: NGINX
+"----------------------------------------------
+au BufNewFile,BufRead default.conf set filetype=nginx
+au BufNewFile,BufRead *nginx*.conf set filetype=nginx
+
+"----------------------------------------------
 " Language: CSS
 "----------------------------------------------
 au FileType css set expandtab
@@ -159,7 +163,9 @@ au FileType python set tabstop=4
 " Language: TypeScript
 "----------------------------------------------
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+
+au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 "----------------------------------------------
 " Language: YAML
