@@ -38,6 +38,12 @@ Plug 'ekalinin/Dockerfile.vim'
 " Nginx syntax highlight
 Plug 'chr4/nginx.vim'
 
+" Typescript syntax highlight
+Plug 'HerringtonDarkholme/yats.vim'
+
+" TSX and JSX highlight
+Plug 'maxmellon/vim-jsx-pretty'
+
 " Conquer of Completion - intellisense engine
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 
