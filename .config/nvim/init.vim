@@ -50,6 +50,7 @@ augroup END
 " ░╚════╝░░╚════╝░░╚════╝░
 
 let g:coc_global_extensions = [
+    \ 'coc-yaml',
     \ 'coc-python',
     \ 'coc-tsserver',
     \ 'coc-css',

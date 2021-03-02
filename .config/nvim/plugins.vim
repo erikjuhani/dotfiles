@@ -44,6 +44,9 @@ Plug 'HerringtonDarkholme/yats.vim'
 " TSX and JSX highlight
 Plug 'maxmellon/vim-jsx-pretty'
 
+" Prisma syntax highlight
+Plug 'pantharshit00/vim-prisma'
+
 " Conquer of Completion - intellisense engine
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 

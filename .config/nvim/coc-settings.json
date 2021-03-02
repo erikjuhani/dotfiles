@@ -12,6 +12,7 @@
     "javascriptreact",
     "json"
   ],
+  "yaml.format.enable": true,
   "eslint.quiet": false,
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
