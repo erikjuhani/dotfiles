@@ -35,6 +35,9 @@ brew_package_install git
 # Fish shell installation
 brew_package_install fish
 
+# Python3 installation
+brew_package_install python3
+
 # Neovim installation
 brew_package_install nvim
 
@@ -52,6 +55,8 @@ bash -c "curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plu
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 nvim --headless +PlugInstall +qall
+pip3 install pynvim --user
+yarn global add neovim
 
 # Docker installation
 brew_package_install docker --cask > /dev/null
