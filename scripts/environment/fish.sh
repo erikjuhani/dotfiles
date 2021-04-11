@@ -35,4 +35,9 @@ echo $BASE_PATH
 rm -f $FISH_CONFIG_PATH/config.fish 2> /dev/null
 ln -s $BASE_PATH/.config/fish/config.fish $FISH_CONFIG_PATH/config.fish
 
+# Get oh my fish shell framework if it does not exist
+if ! command -v omf > /dev/null; then
+  curl -L https://get.oh-my.fish | fish
+fi
+
 exit 0

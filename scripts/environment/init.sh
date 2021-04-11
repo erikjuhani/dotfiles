@@ -66,4 +66,11 @@ if ! command -v docker > /dev/null; then
   open /Applications/Docker.app
 fi
 
+# Fira-code font installation
+brew tap homebrew/cask-fonts
+brew_package_install font-fira-code --cask
+
+# Starship prompt installation
+brew_package_install starship
+
 exit 0

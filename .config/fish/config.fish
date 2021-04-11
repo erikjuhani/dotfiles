@@ -11,3 +11,6 @@ set -gx GOROOT /usr/local/opt/go/libexec
 set -g fish_user_paths "/usr/local/opt/node/bin" $fish_user_paths
 
 set -x PATH $PATH /usr/local/go/bin $GOPATH/bin
+
+# Initialize the starship configuration
+starship init fish | source
