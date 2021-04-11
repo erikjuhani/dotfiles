@@ -1,20 +1,16 @@
 ![Screenshot](screenshot.png?raw=true)
-# My Personal Nvim / Vim Configuration
-Works best with Mac and Xubuntu (xcfe4) as those are the systems I use.
+# Overview
+These are my personal _dotfiles_. Mainly for `go` and `typescript` development environments.
+Best used with neovim and fish shell. (which are both installed with scripts included)
 
-This has been setup to be used mainly with languages `typescript` and `go`.
+This is only intended for darwin operating system (Mac),
+because of the heavy use of homebrew package manager.
 
 ## Setup
 ```sh
 # Clone this repository
 git clone git@github.com:erikjuhani/dotfiles ~
 
-# Startup nvim
-nvim
+# Run the environment scripts with make
 
-# Install Plugins
-:PlugInstall
-
-# Quit and restart nvim
-:q!
 ```

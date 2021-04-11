@@ -50,4 +50,7 @@ Plug 'pantharshit00/vim-prisma'
 " Conquer of Completion - intellisense engine
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 
+" Gruvbox theme
+Plug 'morhetz/gruvbox'
+
 call plug#end()
