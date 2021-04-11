@@ -12,5 +12,5 @@ because of the heavy use of homebrew package manager.
 git clone git@github.com:erikjuhani/dotfiles ~
 
 # Run the environment scripts with make
-
+make init
 ```
