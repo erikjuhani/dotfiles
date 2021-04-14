@@ -73,4 +73,7 @@ brew_package_install font-fira-code --cask
 # Starship prompt installation
 brew_package_install starship
 
+# Slack
+brew_package_install slack --cask
+
 exit 0
