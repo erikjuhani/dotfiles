@@ -20,7 +20,7 @@ if ! grep fish /etc/shells > /dev/null; then
 fi
 
 # Set fish shell as the default shell if it is not set as the default shell
-if [[ $SHELL == "fish" ]]; then
+if [ ! $SHELL == "fish" ]; then
   chsh -s "$(command -v fish)"
 fi
 

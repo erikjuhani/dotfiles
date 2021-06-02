@@ -19,6 +19,10 @@ if ! command -v brew > /dev/null; then
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# setup brew bin path
+echo -n "export PATH=/opt/homebrew/bin:$PATH" >> $HOME/.zprofile
+source $HOME/.zprofile
+
 brew_package_install() {
   if ! command -v $1 > /dev/null; then
     brew install $2 $1
@@ -59,12 +63,14 @@ pip3 install pynvim --user
 yarn global add neovim
 
 # Docker installation
-brew_package_install docker --cask > /dev/null
+# TODO: enable this for m1
+# brew_package_install docker --cask > /dev/null
 
 # Only run this if docker is not found in PATH
-if ! command -v docker > /dev/null; then
-  open /Applications/Docker.app
-fi
+# TODO: enable this for m1
+#if ! command -v docker > /dev/null; then
+#  open /Applications/Docker.app
+#fi
 
 # Fira-code font installation
 brew tap homebrew/cask-fonts
