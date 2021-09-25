@@ -42,6 +42,8 @@ augroup resume_edit_position
         \ | endif
 augroup END
 
+let g:vim_json_conceal = 0
+
 " ░█████╗░░█████╗░░█████╗░
 " ██╔══██╗██╔══██╗██╔══██╗
 " ██║░░╚═╝██║░░██║██║░░╚═╝

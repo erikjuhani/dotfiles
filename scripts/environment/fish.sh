@@ -29,8 +29,6 @@ FISH_CONFIG_PATH=$HOME/.config/fish
 # Create configuration directory if it does not exist
 mkdir -p $FISH_CONFIG_PATH
 
-echo $BASE_PATH
-
 # Create symlink for fish shell configuration 
 rm -f $FISH_CONFIG_PATH/config.fish 2> /dev/null
 ln -s $BASE_PATH/.config/fish/config.fish $FISH_CONFIG_PATH/config.fish
