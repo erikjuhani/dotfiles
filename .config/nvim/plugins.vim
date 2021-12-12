@@ -1,9 +1,4 @@
-" ██████╗░██╗░░░░░██╗░░░██╗░██████╗░██╗███╗░░██╗░██████╗
-" ██╔══██╗██║░░░░░██║░░░██║██╔════╝░██║████╗░██║██╔════╝
-" ██████╔╝██║░░░░░██║░░░██║██║░░██╗░██║██╔██╗██║╚█████╗░
-" ██╔═══╝░██║░░░░░██║░░░██║██║░░╚██╗██║██║╚████║░╚═══██╗
-" ██║░░░░░███████╗╚██████╔╝╚██████╔╝██║██║░╚███║██████╔╝
-" ╚═╝░░░░░╚══════╝░╚═════╝░░╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░
+" PLUGINS
 
 call plug#begin('~/.vim/plugged')
 
@@ -18,10 +13,6 @@ Plug 'morhetz/gruvbox'
 
 " Statusline
 Plug 'itchyny/lightline.vim'
-
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
@@ -38,19 +29,53 @@ Plug 'ekalinin/Dockerfile.vim'
 " Nginx syntax highlight
 Plug 'chr4/nginx.vim'
 
-" Typescript syntax highlight
-Plug 'HerringtonDarkholme/yats.vim'
-
 " TSX and JSX highlight
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
 
 " Prisma syntax highlight
 Plug 'pantharshit00/vim-prisma'
 
-" Conquer of Completion - intellisense engine
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+" Fish syntax
+Plug 'dag/vim-fish'
 
-" Gruvbox theme
-Plug 'morhetz/gruvbox'
+" Solarized theme
+Plug 'overcache/NeoSolarized'
+
+" Lsp configurations
+Plug 'neovim/nvim-lspconfig'
+
+" Code action and diagnostics
+Plug 'folke/lsp-colors.nvim'
+Plug 'folke/trouble.nvim'
+Plug 'tami5/lspsaga.nvim'
+
+" Devicons
+Plug 'kyazdani42/nvim-web-devicons'
+
+" Typescript
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
+" Code completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'SirVer/ultisnips'
+
+" Code formatting
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
+" Git commands
+Plug 'tpope/vim-fugitive'
+
+" Tree-sitter enhanced syntax colors
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+" Finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'lbrayner/vim-rzip'
 
 call plug#end()

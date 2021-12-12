@@ -15,7 +15,26 @@
 # Set homebrew bin to path
 set -gx PATH /opt/homebrew/bin $PATH
 
-
 # Initialize the starship configuration
 starship init fish | source
 set -g -x PATH /opt/homebrew/opt/bison/bin $PATH
+
+set -x GOPATH $HOME/go
+set -x PATH $PATH $GOPATH/bin
+
+# Aliases
+# TODO: Split to separate file
+# source (dirname (status --current-filename))/config-alias.fish
+alias ls "ls -p -G"
+alias la "ls -A"
+alias ll "ls -l"
+alias lla "ll -A"
+
+alias y "yarn"
+alias v "nvim"
+
+alias g "git"
+alias gl "git log"
+alias gpl "git pull --rebase"
+alias gph "git push"
+alias gr "git rebase"
