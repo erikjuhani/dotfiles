@@ -151,7 +151,19 @@ au FileType yaml set shiftwidth=2
 au FileType yaml set softtabstop=2
 au FileType yaml set tabstop=2
 
+nmap <Space><Space> <Plug>(easymotion-bd-w)
+
+set completeopt=menuone,noselect
+
 lua << EOF
+-- General LSP Configuration
+local nvim_lsp = require"lspconfig"
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local opts = { noremap = true, silent = true }
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
@@ -160,10 +172,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
-EOF
 
-lua << EOF
--- Saga diagnostic configuration
+-- Saga lsp configuration
 local saga = require 'lspsaga'
 
 saga.init_lsp_saga {
@@ -175,22 +185,14 @@ saga.init_lsp_saga {
   code_action_keys = { quit = '<ESC>', exec = '<CR>' },
 }
 
+-- Show help on hover
 --diagnostic = require'lspsaga.diagnostic'
 --signaturehelp = require'lspsaga.signaturehelp'
 
---vim.cmd [[autocmd CursorHold * lua diagnostic.show_cursor_diagnostics()]]
---vim.cmd [[autocmd CursorHoldI * silent! lua signaturehelp.signature_help()]]
-EOF
+-- vim.cmd [[autocmd CursorHold * lua diagnostic.show_cursor_diagnostics()]]
+-- vim.cmd [[autocmd CursorHoldI * silent! lua signaturehelp.signature_help()]]
 
-nmap <Space><Space> <Plug>(easymotion-bd-w)
-nnoremap <silent> <C-k> <Cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> <C-l> <Cmd>Lspsaga show_line_diagnostics<CR>
-nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
-nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
-nnoremap <silent> <C-g> <cmd>Telescope live_grep<cr>
-
-lua << EOF
+-- Telescope configuration
 local actions = require('telescope.actions')
 
 require('telescope').setup{
@@ -214,7 +216,7 @@ require('telescope').setup{
       "-g",
       "!.yarn.lock"
     },
-    file_ignore_patterns = {"node_modules/**/*", ".yarn/cache/*", "dist/**/*", ".git/**/*"},
+    file_ignore_patterns = {"vendor/*", "node_modules/**/*", ".yarn/cache/*", "dist/**/*", ".git/**/*"},
     hidden = true,
     mappings = {
       n = {
@@ -227,6 +229,7 @@ require('telescope').setup{
   }
 }
 
+-- Show minimal search box for file find
 function minimal_finder()
   return require('telescope.themes').get_dropdown({
     find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
@@ -244,18 +247,9 @@ end
 
 local opts = { noremap = true, silent = true }
 
+-- Telescope keymap
 vim.api.nvim_set_keymap('n', '<C-p>', "<Cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>", opts)
-EOF
-
-set completeopt=menuone,noselect
-
-lua << EOF
-local nvim_lsp = require "lspconfig"
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', '<C-g>', "<Cmd>lua require('telescope.builtin').live_grep(minimal_finder())<CR>", opts)
 
 local on_attach = function(client, bufnr)
   local function buf_set_options(...) vim.api.nvim_buf_set_options(bufnr, ...) end
@@ -264,6 +258,16 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   client.resolved_capabilities.document_formatting = false
+
+  -- Saga keymap
+  buf_set_keymap('n', '<C-k>', "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+  buf_set_keymap('n', '<C-j>', "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+  buf_set_keymap('n', '<C-l>', "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
+  buf_set_keymap('n', 'gh', "<Cmd>Lspsaga lsp_finder<CR>", opts)
+  buf_set_keymap('n', 'gp', "<Cmd>Lspsaga preview_definition<CR>", opts)
+  buf_set_keymap('n', 'K', "<Cmd>Lspsaga hover_doc<CR>", opts)
+
+  -- Go to definition
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
@@ -274,52 +278,14 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command [[augroup END]]
   end
 
-  require'nvim-lsp-ts-utils'
-end
+  require "lsp_signature".on_attach()
 
-nvim_lsp.diagnosticls.setup {
-  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "css"},
-  init_options = {
-    filetypes = {
-      javascript = "eslint",
-      typescript = "eslint",
-      javascriptreact = "eslint",
-      typescriptreact = "eslint"
-    },
-    linters = {
-      eslint = {
-        sourceName = "eslint",
-        command = "./node_modules/.bin/eslint",
-        rootPatterns = {
-          ".eslitrc.js",
-          "package.json"
-        },
-        debounce = 100,
-        args = {
-          "--cache",
-          "--stdin",
-          "--stdin-filename",
-          "%filepath",
-          "--format",
-          "json"
-        },
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity"
-        },
-        securities = {
-          [2] = "error",
-          [1] = "warning"
-        }
-      }
-    }
-  }
-}
+  -- Typescript specific configurations
+  if client.name == 'tsserver' then
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup_client(client)
+  end
+end
 
 --Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
@@ -373,13 +339,46 @@ vim.o.completeopt = "menu,menuone,noselect"
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  require('lspconfig').tsserver.setup {
+
+
+  local null_ls = require("null-ls")
+  null_ls.setup({
+      sources = {
+          null_ls.builtins.diagnostics.eslint_d
+      },
+  })
+
+  nvim_lsp.tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
   }
+
+  nvim_lsp.gopls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {"gopls", "serve"},
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+        linksInHover = false,
+        codelens = {
+          generate = true,
+          gc_details = true,
+          regenerate_cgo = true,
+          tidy = true,
+          upgrade_depdendency = true,
+          vendor = true,
+        },
+        usePlaceholders = true,
+      },
+    },
+  }
 EOF
 
-" For yarn pnp
+" Yarn PnP
 " Decode URI encoded characters
 function! DecodeURI(uri)
     return substitute(a:uri, '%\([a-fA-F0-9][a-fA-F0-9]\)', '\=nr2char("0x" . submatch(1))', "g")

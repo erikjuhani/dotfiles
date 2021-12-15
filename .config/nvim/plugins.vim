@@ -43,6 +43,7 @@ Plug 'overcache/NeoSolarized'
 
 " Lsp configurations
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Code action and diagnostics
 Plug 'folke/lsp-colors.nvim'
@@ -54,12 +55,14 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " Typescript
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Code completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
+Plug 'ray-x/lsp_signature.nvim'
 
 " Code formatting
 Plug 'prettier/vim-prettier', {
