@@ -141,8 +141,6 @@ au FileType typescript set tabstop=2
 au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
 au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html Prettier
-
 "----------------------------------------------
 " Language: YAML
 "----------------------------------------------
@@ -167,7 +165,18 @@ local opts = { noremap = true, silent = true }
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
-    virtual_text = false,
+    virtual_text = {
+      spacing = 2,
+      prefix = '',
+      format = function(diagnostic)
+        local m = diagnostic.message
+        -- truncate long diagnostic messages
+        if m:len() > 20 then
+          m = m:sub(1, 20) .. '..'
+        end
+        return string.format("%s: %s", diagnostic.source, m)
+      end
+    },
     signs = true,
     update_in_insert = false,
   }
@@ -257,8 +266,6 @@ local on_attach = function(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  client.resolved_capabilities.document_formatting = false
-
   -- Saga keymap
   buf_set_keymap('n', '<C-k>', "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
   buf_set_keymap('n', '<C-j>', "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
@@ -271,20 +278,19 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
-  end
-
-  require "lsp_signature".on_attach()
-
   -- Typescript specific configurations
   if client.name == 'tsserver' then
+    client.resolved_capabilities.document_formatting = false
+
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup_client(client)
   end
+
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  end
+
+  require "lsp_signature".on_attach()
 end
 
 --Set completeopt to have a better completion experience
@@ -337,16 +343,80 @@ vim.o.completeopt = "menu,menuone,noselect"
   --  })
   --})
 
-  -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-
-  local null_ls = require("null-ls")
-  null_ls.setup({
-      sources = {
-          null_ls.builtins.diagnostics.eslint_d
+  nvim_lsp.diagnosticls.setup {
+    on_attach = on_attach,
+    filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+    init_options = {
+      linters = {
+        eslint = {
+          sourceName = 'eslint_d',
+          command = 'eslint_d',
+          rootPatterns = { '.git' },
+          debounce = 100,
+          args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+          parseJson = {
+            errorsRoot = '[0].messages',
+            line = 'line',
+            column = 'column',
+            endLine = 'endLine',
+            endColumn = 'endColumn',
+            message = '${message} [${ruleId}]',
+            security = 'severity'
+          },
+          securities = {
+            [2] = 'error',
+            [1] = 'warning'
+          }
+        },
       },
-  })
+      filetypes = {
+        javascript = 'eslint',
+        javascriptreact = 'eslint',
+        typescript = 'eslint',
+        typescriptreact = 'eslint',
+      },
+      formatters = {
+        eslint_d = {
+          command = 'eslint_d',
+          args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
+          rootPatterns = { '.git' },
+        },
+        prettier = {
+          sourceName = 'prettier',
+          command = 'node_modules/.bin/prettier',
+          args = { '--stdin', '--stdin-filepath', '%filepath' },
+          rootPatterns = {
+            '.prettierrc',
+            '.prettierrc.json',
+            '.prettierrc.toml',
+            '.prettierrc.json',
+            '.prettierrc.yml',
+            '.prettierrc.yaml',
+            '.prettierrc.json5',
+            '.prettierrc.js',
+            '.prettierrc.cjs',
+            'prettier.config.js',
+            'prettier.config.cjs',
+            '.git',
+          },
+        }
+      },
+      formatFiletypes = {
+        css = 'prettier',
+        javascript = 'prettier',
+        javascriptreact = 'prettier',
+        json = 'prettier',
+        scss = 'prettier',
+        less = 'prettier',
+        typescript = 'prettier',
+        typescriptreact = 'prettier',
+        json = 'prettier',
+        markdown = 'prettier',
+      }
+    }
+  }
 
   nvim_lsp.tsserver.setup {
     on_attach = on_attach,
