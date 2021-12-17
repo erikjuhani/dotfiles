@@ -30,11 +30,41 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 
-alias y "yarn"
 alias v "nvim"
 
+alias y "yarn"
+alias yw "y workspace"
+
 alias g "git"
-alias gl "git log"
-alias gpl "git pull --rebase"
-alias gph "git push"
-alias gr "git rebase"
+alias gm "g mv"
+alias ga "g add"
+alias gc "g commit --no-verify"
+alias gca "gc --amend"
+alias gd "g diff"
+alias gdo "g diff origin"
+alias gl "g log"
+alias gph "g push"
+alias gpl "g pull"
+alias gpr "gpl --rebase"
+alias gr "g rebase"
+alias gg "g grep"
+alias ggl "gg -l"
+alias gs "g status -s -b"
+
+function gitStatusToNvim
+  gs --porcelain $argv | sed s/^...// | xargs nvim
+end
+
+alias gsv "gitStatusToNvim"
+
+function gitGrepToNvim
+  ggl $argv | xargs nvim
+end
+
+alias ggv "gitGrepToNvim"
+
+function gitRebaseToLatest
+  g checkout $argv && gpl && g switch - && gr $argv
+end
+
+alias grup "gitRebaseToLatest"

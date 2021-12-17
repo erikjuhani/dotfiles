@@ -132,14 +132,18 @@ au FileType python set tabstop=4
 "----------------------------------------------
 " Language: TypeScript
 "----------------------------------------------
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au FileType typescript set expandtab
 au FileType typescript set shiftwidth=2
 au FileType typescript set softtabstop=2
 au FileType typescript set tabstop=2
 
-au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
-au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+"----------------------------------------------
+" Language: TypeScriptReact
+"----------------------------------------------
+au FileType typescriptreact set expandtab
+au FileType typescriptreact set shiftwidth=2
+au FileType typescriptreact set softtabstop=2
+au FileType typescriptreact set tabstop=2
 
 "----------------------------------------------
 " Language: YAML
@@ -152,6 +156,8 @@ au FileType yaml set tabstop=2
 nmap <Space><Space> <Plug>(easymotion-bd-w)
 
 set completeopt=menuone,noselect
+
+let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 lua << EOF
 -- General LSP Configuration
@@ -174,7 +180,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         if m:len() > 20 then
           m = m:sub(1, 20) .. '..'
         end
-        return string.format("%s: %s", diagnostic.source, m)
+        return string.format("%s", m)
       end
     },
     signs = true,
@@ -205,6 +211,12 @@ saga.init_lsp_saga {
 local actions = require('telescope.actions')
 
 require('telescope').setup{
+  extensions = {
+    fuzzy = true,
+    override_generic_sorter = true,
+    override_file_sorter = true,
+    case_mode = "smart_case",
+  },
   defaults = {
     layout_config = {
       horizontal = { width = 0.75 }
@@ -225,7 +237,13 @@ require('telescope').setup{
       "-g",
       "!.yarn.lock"
     },
-    file_ignore_patterns = {"vendor/*", "node_modules/**/*", ".yarn/cache/*", "dist/**/*", ".git/**/*"},
+    file_ignore_patterns = {
+      "vendor/*",
+      "node_modules/**/*",
+      ".yarn/cache/*",
+      "dist/**/*",
+      ".git/**/*"
+    },
     hidden = true,
     mappings = {
       n = {
@@ -237,6 +255,8 @@ require('telescope').setup{
     },
   }
 }
+
+require('telescope').load_extension('fzf')
 
 -- Show minimal search box for file find
 function minimal_finder()
@@ -258,7 +278,7 @@ local opts = { noremap = true, silent = true }
 
 -- Telescope keymap
 vim.api.nvim_set_keymap('n', '<C-p>', "<Cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-g>', "<Cmd>lua require('telescope.builtin').live_grep(minimal_finder())<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-g>', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
 
 local on_attach = function(client, bufnr)
   local function buf_set_options(...) vim.api.nvim_buf_set_options(bufnr, ...) end
@@ -353,7 +373,6 @@ vim.o.completeopt = "menu,menuone,noselect"
         eslint = {
           sourceName = 'eslint_d',
           command = 'eslint_d',
-          rootPatterns = { '.git' },
           debounce = 100,
           args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
           parseJson = {
@@ -362,13 +381,22 @@ vim.o.completeopt = "menu,menuone,noselect"
             column = 'column',
             endLine = 'endLine',
             endColumn = 'endColumn',
-            message = '${message} [${ruleId}]',
+            message = '[${ruleId}]: ${message}',
             security = 'severity'
           },
           securities = {
-            [2] = 'error',
-            [1] = 'warning'
-          }
+            [3] = 'error',
+            [2] = 'warning'
+          },
+          rootPatterns = {
+            '.git',
+            '.eslintrc',
+            '.eslintrc.cjs',
+            '.eslintrc.js',
+            '.eslintrc.json',
+            '.eslintrc.yaml',
+            '.eslintrc.yml',
+          },
         },
       },
       filetypes = {
@@ -381,11 +409,11 @@ vim.o.completeopt = "menu,menuone,noselect"
         eslint_d = {
           command = 'eslint_d',
           args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-          rootPatterns = { '.git' },
+          rootPatterns = { '.git', '.eslintrc' },
         },
         prettier = {
           sourceName = 'prettier',
-          command = 'node_modules/.bin/prettier',
+          command = 'prettier',
           args = { '--stdin', '--stdin-filepath', '%filepath' },
           rootPatterns = {
             '.prettierrc',
@@ -420,6 +448,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 
   nvim_lsp.tsserver.setup {
     on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact" },
     capabilities = capabilities
   }
 
@@ -508,6 +537,9 @@ function! TermToggle(height)
         let g:term_win = win_getid()
     endif
 endfunction
+
+nnoremap <C-n> :next<CR>
+nnoremap <C-b> :prev<CR>
 
 " Toggle terminal on/off (neovim)
 nnoremap <C-t> :call TermToggle(12)<CR>
