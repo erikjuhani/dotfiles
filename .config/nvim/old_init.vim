@@ -56,9 +56,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " >> Solarized theme
 set background=dark
-let g:neosolarized_contrast = "high"
-let g:neosolarized_visibility = "low"
-colorscheme NeoSolarized
+let g:solarized_visibility = "low"
+colorscheme solarized
 
 " Build/Test on save.
 augroup auto_go
@@ -130,6 +129,14 @@ au FileType python set softtabstop=4
 au FileType python set tabstop=4
 
 "----------------------------------------------
+" Language: Javascript
+"----------------------------------------------
+au FileType javascript set expandtab
+au FileType javascript set shiftwidth=2
+au FileType javascript set softtabstop=2
+au FileType javascript set tabstop=2
+
+"----------------------------------------------
 " Language: TypeScript
 "----------------------------------------------
 au FileType typescript set expandtab
@@ -159,6 +166,8 @@ set completeopt=menuone,noselect
 
 let $FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
+hi link NormalFloat Normal
+
 lua << EOF
 -- General LSP Configuration
 local nvim_lsp = require"lspconfig"
@@ -187,6 +196,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  sync_install = false,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 -- Saga lsp configuration
 local saga = require 'lspsaga'
@@ -263,10 +281,10 @@ function minimal_finder()
   return require('telescope.themes').get_dropdown({
     find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
     borderchars = {
-      { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-      prompt = {"─", "│", " ", "│", '┌', '┐', "│", "│"},
-      results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
-      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+      prompt = {"─", "│", " ", "│", '╭', '╮', "│", "│"},
+      results = {"─", "│", "─", "│", "├", "┤", "╯", "╰"},
+      preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
     },
     hidden = true,
     previewer = false,
@@ -276,27 +294,39 @@ end
 
 local opts = { noremap = true, silent = true }
 
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 -- Telescope keymap
 vim.api.nvim_set_keymap('n', '<C-p>', "<Cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>", opts)
 vim.api.nvim_set_keymap('n', '<C-g>', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
 
 local on_attach = function(client, bufnr)
-  local function buf_set_options(...) vim.api.nvim_buf_set_options(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Saga keymap
-  buf_set_keymap('n', '<C-k>', "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-  buf_set_keymap('n', '<C-j>', "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-  buf_set_keymap('n', '<C-l>', "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
-  buf_set_keymap('n', 'gh', "<Cmd>Lspsaga lsp_finder<CR>", opts)
-  buf_set_keymap('n', 'gp', "<Cmd>Lspsaga preview_definition<CR>", opts)
-  buf_set_keymap('n', 'K', "<Cmd>Lspsaga hover_doc<CR>", opts)
+  --buf_set_keymap('n', '<C-k>', "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+  --buf_set_keymap('n', '<C-j>', "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+  --buf_set_keymap('n', '<C-l>', "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
+  --buf_set_keymap('n', 'gh', "<Cmd>Lspsaga lsp_finder<CR>", opts)
+  --buf_set_keymap('n', '<c-p>', "<Cmd>Lspsaga preview_definition<CR>", opts)
+  --buf_set_keymap('n', 'K', "<Cmd>Lspsaga hover_doc<CR>", opts)
 
   -- Go to definition
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  buf_set_keymap('n', '<C-l>', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
 
   -- Typescript specific configurations
   if client.name == 'tsserver' then
@@ -413,7 +443,7 @@ vim.o.completeopt = "menu,menuone,noselect"
         },
         prettier = {
           sourceName = 'prettier',
-          command = 'prettier',
+          command = 'node_modules/.bin/prettier',
           args = { '--stdin', '--stdin-filepath', '%filepath' },
           rootPatterns = {
             '.prettierrc',
@@ -476,44 +506,6 @@ vim.o.completeopt = "menu,menuone,noselect"
     },
   }
 EOF
-
-" Yarn PnP
-" Decode URI encoded characters
-function! DecodeURI(uri)
-    return substitute(a:uri, '%\([a-fA-F0-9][a-fA-F0-9]\)', '\=nr2char("0x" . submatch(1))', "g")
-endfunction
-
-" Attempt to clear non-focused buffers with matching name
-function! ClearDuplicateBuffers(uri)
-    " if our filename has URI encoded characters
-    if DecodeURI(a:uri) !=# a:uri
-        " wipeout buffer with URI decoded name - can print error if buffer in focus
-        sil! exe "bwipeout " . fnameescape(DecodeURI(a:uri))
-        " change the name of the current buffer to the URI decoded name
-        exe "keepalt file " . fnameescape(DecodeURI(a:uri))
-        " ensure we don't have any open buffer matching non-URI decoded name
-        sil! exe "bwipeout " . fnameescape(a:uri)
-    endif
-endfunction
-
-function! RzipOverride()
-    " Disable vim-rzip's autocommands
-    autocmd! zip BufReadCmd   zipfile:*,zipfile:*/*
-    exe "au! zip BufReadCmd ".g:zipPlugin_ext
-
-    " order is important here, setup name of new buffer correctly then fallback to vim-rzip's handling
-    autocmd zip BufReadCmd   zipfile:*  call ClearDuplicateBuffers(expand("<afile>"))
-    autocmd zip BufReadCmd   zipfile:*  call rzip#Read(DecodeURI(expand("<afile>")), 1)
-
-    if has("unix")
-        autocmd zip BufReadCmd   zipfile:*/*  call ClearDuplicateBuffers(expand("<afile>"))
-        autocmd zip BufReadCmd   zipfile:*/*  call rzip#Read(DecodeURI(expand("<afile>")), 1)
-    endif
-
-    exe "au zip BufReadCmd ".g:zipPlugin_ext."  call rzip#Browse(DecodeURI(expand('<afile>')))"
-endfunction
-
-autocmd VimEnter * call RzipOverride()
 
 " Terminal Function
 let g:term_buf = 0

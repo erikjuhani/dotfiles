@@ -39,7 +39,9 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'dag/vim-fish'
 
 " Solarized theme
-Plug 'overcache/NeoSolarized'
+" Plug 'overcache/NeoSolarized'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'ishan9299/nvim-solarized-lua'
 
 " Lsp configurations
 Plug 'neovim/nvim-lspconfig'

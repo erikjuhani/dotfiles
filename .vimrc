@@ -1,4 +1,4 @@
-" To disable or enable settins remove or add the comment mark `"` in front of the setting
+scriptencoding utf-8
 
 " Force Vi improved
 set nocompatible
@@ -96,3 +96,9 @@ filetype plugin on
 
 " Enable syntax highlighting
 syntax enable
+
+" Enables 24-bit RGB color
+set termguicolors
+
+" Vim only
+set background=light
