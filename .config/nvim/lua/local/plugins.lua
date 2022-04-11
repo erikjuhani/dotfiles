@@ -74,8 +74,7 @@ return packer.startup(function(use)
   }
 
   use {
-    "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+    "itchyny/lightline.vim"
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

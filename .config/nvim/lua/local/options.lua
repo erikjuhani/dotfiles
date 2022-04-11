@@ -92,6 +92,8 @@ set.signcolumn = "yes"
 
 set.completeopt:remove("preview")
 
+set.shiftwidth = 2
+
 vim.cmd [[
   filetype plugin on
   syntax enable
