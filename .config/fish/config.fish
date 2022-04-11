@@ -51,6 +51,10 @@ alias gg "g grep"
 alias ggl "gg -l"
 alias gs "g status -s -b"
 
+alias tls "tmux ls"
+alias tmc "tmux new -s"
+alias tma "tmux a -t"
+
 function gitStatusToNvim
   gs --porcelain $argv | sed s/^...// | xargs nvim
 end

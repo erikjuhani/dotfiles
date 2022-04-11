@@ -14,6 +14,10 @@ mkdir -p $DESTINATION_CONFIG_PATH/nvim
 rm -f $HOME/.vimrc
 ln -s $BASE_PATH/.vimrc $HOME/.vimrc
 
+# .tmux.conf
+rm -f $HOME/.tmux.conf
+ln -s $BASE_PATH/.tmux.conf $HOME/.tmux.conf
+
 # nvim
 rm -r $DESTINATION_CONFIG_PATH/nvim
 ln -s $CONFIG_PATH/nvim $DESTINATION_CONFIG_PATH/nvim
