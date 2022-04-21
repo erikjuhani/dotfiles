@@ -74,8 +74,8 @@ local set_keymap = vim.api.nvim_set_keymap
 local function nmap(lhs, rhs) set_keymap("n", lhs, rhs, opts) end
 
 -- Telescope keymap
-nmap("<C-p>", "<Cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>")
-nmap("<C-g>", "<Cmd>lua require('telescope.builtin').live_grep()<CR>")
+nmap("<Leader>p", "<cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>")
+nmap("<Leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 
 -- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
