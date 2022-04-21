@@ -3,7 +3,7 @@
 These are my personal _dotfiles_. Mainly for `go` and `typescript` development environments.
 Best used with neovim and fish shell. (which are both installed with scripts included)
 
-This is only intended for darwin operating system (Mac),
+Currently only intended for darwin operating system (Mac),
 because of the heavy use of homebrew package manager.
 
 ## Setup
