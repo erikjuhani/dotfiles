@@ -76,9 +76,14 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
 
+  -- Statusline
   use {
     "itchyny/lightline.vim"
   }
+
+  -- Motion
+  use "chaoren/vim-wordmotion"
+  use "FooSoft/vim-argwrap"
 
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
