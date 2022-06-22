@@ -32,10 +32,6 @@ local on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-
-    if client.name == "gopls" then
-      vim.cmd("autocmd BufWritePre <buffer> lua goimports(1000)")
-    end
   end
 
   lsp_nmap(bufnr)
@@ -154,38 +150,8 @@ nvim_lsp.gopls.setup{
   },
 }
 
--- copied from this article: https://www.getman.io/posts/programming-go-in-neovim/
--- will be doing own implementation at some point
--- enables goimports code action on file save
-function goimports(timeoutms)
-    local context = { source = { organizeImports = true } }
-    vim.validate { context = { context, "t", true } }
-
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
-
-    -- See the implementation of the textDocument/codeAction callback
-    -- (lua/vim/lsp/handler.lua) for how to do this properly.
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if result == nil or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
-
-    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-    -- is a CodeAction, it can have either an edit, a command or both. Edits
-    -- should be executed first.
-    if action.edit or type(action.command) == "table" then
-      if action.edit then
-        vim.lsp.util.apply_workspace_edit(action.edit)
-      end
-      if type(action.command) == "table" then
-        vim.lsp.buf.execute_command(action.command)
-      end
-    else
-      vim.lsp.buf.execute_command(action)
-    end
-  end
+require('go').setup()
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 
 local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
@@ -206,7 +172,11 @@ treesitter.setup {
     "dockerfile",
     "graphql",
     "prisma",
+    "c",
+    "rust",
     "css",
+    "html",
+    "markdown",
   },
   sync_install = false,
   highlight = {

@@ -85,6 +85,9 @@ return packer.startup(function(use)
   use "chaoren/vim-wordmotion"
   use "FooSoft/vim-argwrap"
 
+  -- Language specifics
+  use "ray-x/go.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
     require("packer").sync()
