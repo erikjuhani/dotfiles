@@ -95,12 +95,8 @@ set.completeopt:remove("preview")
 set.shiftwidth = 2
 
 vim.cmd [[
-  filetype plugin on
-  syntax enable
-  set termguicolors
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  set background=dark
-  let g:solarized_visibility = "low"
-  colorscheme solarized
-  hi link NormalFloat Normal
+  au FileType go set expandtab
+  au FileType go set shiftwidth=4
+  au FileType go set softtabstop=4
+  au FileType go set tabstop=4
 ]]
