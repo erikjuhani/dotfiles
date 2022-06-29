@@ -1,0 +1,30 @@
+# open in fullscreen
+shift + alt + ctrl + cmd - f : yabai -m window --toggle zoom-fullscreen
+
+# balance window
+shift + alt + ctrl + cmd - b : yabai -m space --balance
+
+# float window
+shift + alt + ctrl + cmd - p : yabai -m window --toggle float
+
+# open new terminal window
+shift + alt + ctrl + cmd - t : alacritty msg create-window
+
+# rotate window
+shift + alt + ctrl + cmd - r : yabai -m space --rotate 90
+
+# focus window
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# swap window
+shift + alt + ctrl + cmd - h : yabai -m window --swap west
+shift + alt + ctrl + cmd - j : yabai -m window --swap south
+shift + alt + ctrl + cmd - k : yabai -m window --swap north
+shift + alt + ctrl + cmd - l : yabai -m window --swap east
+
+# warp window
+ctrl + alt - h : yabai -m window --warp west
+ctrl + alt - l : yabai -m window --warp east

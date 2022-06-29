@@ -1,0 +1,83 @@
+window:
+  decorations: buttonless
+
+  padding:
+    x: 3
+    y: 3
+
+font:
+  size: 14
+
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+    style: Thin
+
+colors:
+  primary:
+    background: '#252525'
+    foreground: '#c8c8c8'
+
+  normal:
+    black:   '#252525'
+    red:     '#be7472'
+    green:   '#709772'
+    yellow:  '#989772'
+    blue:    '#7199bc'
+    magenta: '#727399'
+    cyan:    '#719899'
+    white:   '#7f7f7f'
+
+  bright:
+    black:   '#555555'
+    red:     '#ff9900'
+    green:   '#97bb98'
+    yellow:  '#fefdbc'
+    blue:    '#9fbdde'
+    magenta: '#989abc'
+    cyan:    '#6fbbbc'
+    white:   '#feffff'
+
+shell:
+  program: /opt/homebrew/bin/fish
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
+key_bindings:
+  - { key: Key1,      mods: Alt,          chars: "\xA9"                  }
+  - { key: Key2,      mods: Alt,          chars: "\x40"                  }
+  - { key: Key3,      mods: Alt,          chars: "\xA3"                  }
+  - { key: Key4,      mods: Alt,          chars: "\x24"                  }
+  - { key: Key5,      mods: Alt,          chars: "∞"                     }
+  - { key: Key6,      mods: Alt,          chars: "\xA7"                  }
+  - { key: Key7,      mods: Alt,          chars: "\x7C"                  }
+  - { key: Key8,      mods: Alt,          chars: "\x5B"                  }
+  - { key: Key9,      mods: Alt,          chars: "\x5D"                  }
+  - { key: Key0,      mods: Alt,          chars: "≈"                     }
+  - { key: Minus,     mods: Alt,          chars: "\xB1"                  }
+  - { key: 26, mods: Alt, chars: "|" }
+  - { key: 26, mods: Shift|Alt, chars: "\\" }
+  - { key: 30, mods: Alt, chars: "~" }
+  - { key: 28, mods: Alt, chars: "[" }
+  - { key: 25, mods: Alt, chars: "]" }
+  - { key: 28, mods: Shift|Alt, chars: "{" }
+  - { key: 25, mods: Shift|Alt, chars: "}" }
+  
+  - { key: Key1,      mods: Alt|Shift,    chars: "\xA1"                  }
+  - { key: Key2,      mods: Alt|Shift,    chars: "”"                     }
+  - { key: Key3,      mods: Alt|Shift,    chars: "\xA5"                  }
+  - { key: Key4,      mods: Alt|Shift,    chars: "\x24"                  }
+  - { key: Key5,      mods: Alt|Shift,    chars: "‰"                     }
+  - { key: Key6,      mods: Alt|Shift,    chars: "\xB6"                  }
+  - { key: Key7,      mods: Alt|Shift,    chars: "\x5C"                  }
+  - { key: Key8,      mods: Alt|Shift,    chars: "\x7B"                  }
+  - { key: Key9,      mods: Alt|Shift,    chars: "\x7D"                  }
+  - { key: Key0,      mods: Alt|Shift,    chars: "≠"                     }
+  - { key: Minus,     mods: Alt|Shift,    chars: "\xBF"                  }
+
+# Replace the default bindings for these as the VirtualKeycodes don't match reality
+  - { key: Slash,     mods: Command,      action: DecreaseFontSize       }
+  - { key: Minus,     mods: Command,      action: IncreaseFontSize       }
+  - { key: N,         mods: Control|Shift, action: CreateNewWindow }
+  - { key: J,         mods: Control, chars: "\x0A" }

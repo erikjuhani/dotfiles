@@ -33,34 +33,42 @@ brew_package_install() {
 
 # After this point we will use homebrew for all installations as it will be our main package manager.
 
-# Git should always be found, but if not install git.
+# git should always be found, but if not install git - version control
 brew_package_install git
 
-# Fish shell installation
+# commandline shell
 brew_package_install fish
 
-# Python3 installation
+# python3
 brew_package_install python3
 
-# Neovim installation
+# text editor
 brew_package_install nvim
 
-# Go installation
+# go
 brew_package_install go
 
-# Node installation
+# nodejs 
 brew_package_install node
 
-# Yarn installation
+# node package manager
 brew_package_install yarn
 
-# Neovim environment installation
-bash -c "curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+# hotkey daemon
+brew_package_install skhd
 
-nvim --headless +PlugInstall +qall
+# window manager
+brew_package_install yabai
+
+# terminal emulator
+brew_package_install alacritty
+
+# Neovim environment installation
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim --headless +PackerUpdate +PackerCompile +qa
 pip3 install pynvim --user
-yarn global add neovim
+# yarn global add neovim
 
 # Docker installation
 # TODO: enable this for m1
@@ -72,14 +80,16 @@ yarn global add neovim
 #  open /Applications/Docker.app
 #fi
 
-# Fira-code font installation
-brew tap homebrew/cask-fonts
-brew_package_install font-fira-code --cask
+# preferred nerd font
+brew_package_install font-jetbrains-mono-nerd-font
 
-# Starship prompt installation
+# starship prompt installation
 brew_package_install starship
 
-# Slack
+# slack
 brew_package_install slack --cask
+
+# karabiner-elements (required for hyperkey)
+brew_package_install karabiner-elements
 
 exit 0

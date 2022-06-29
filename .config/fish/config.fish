@@ -72,3 +72,5 @@ function gitRebaseToLatest
 end
 
 alias grup "gitRebaseToLatest"
+
+set fish_greeting
