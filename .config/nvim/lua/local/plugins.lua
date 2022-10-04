@@ -41,6 +41,9 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
 
+  -- cache
+  use 'lewis6991/impatient.nvim'
+
   -- git commands
   use "tpope/vim-fugitive"
 

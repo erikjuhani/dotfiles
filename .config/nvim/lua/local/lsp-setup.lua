@@ -137,11 +137,11 @@ nvim_lsp.gopls.setup{
       },
       staticcheck = true,
       linksInHover = false,
-      codelens = {
+      codelenses = {
         generate = true,
-        gc_details = true,
+        gc_details = false,
         regenerate_cgo = true,
-        tidy = true,
+        tidy = false,
         upgrade_depdendency = true,
         vendor = true,
       },
@@ -151,6 +151,7 @@ nvim_lsp.gopls.setup{
 }
 
 require('go').setup()
+
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 
 local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")

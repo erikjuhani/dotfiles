@@ -1,4 +1,5 @@
 require "local.plugins"
+require "impatient"
 require "local.options"
 require "local.keymaps"
 require "local.lsp-setup"
