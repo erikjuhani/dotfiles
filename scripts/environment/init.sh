@@ -54,6 +54,9 @@ brew_package_install node
 # node package manager
 brew_package_install yarn
 
+# better cat
+brew_package_install bat
+
 # hotkey daemon
 brew_package_install skhd
 

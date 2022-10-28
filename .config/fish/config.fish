@@ -22,38 +22,38 @@ set -g -x PATH /opt/homebrew/opt/bison/bin $PATH
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
 
-# Aliases
-# TODO: Split to separate file
-# source (dirname (status --current-filename))/config-alias.fish
 alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 
-alias v "nvim"
+# Abbreviations
+# TODO: Split to separate file
+# source (dirname (status --current-filename))/config-abbr.fish
+abbr -a v "nvim"
 
-alias y "yarn"
-alias yw "y workspace"
+abbr -a y "yarn"
+abbr -a yw "yarn workspace"
 
-alias g "git"
-alias gm "g mv"
-alias ga "g add"
-alias gc "g commit --no-verify"
-alias gca "gc --amend"
-alias gd "g diff"
-alias gdo "g diff origin"
-alias gl "g log"
-alias gph "g push"
-alias gpl "g pull"
-alias gpr "gpl --rebase"
-alias gr "g rebase"
-alias gg "g grep"
-alias ggl "gg -l"
-alias gs "g status -s -b"
+abbr -a g "git"
+abbr -a gm "git mv"
+abbr -a ga "git add"
+abbr -a gc "git commit --no-verify"
+abbr -a gca "git commit --amend"
+abbr -a gd "git diff"
+abbr -a gdo "git diff origin"
+abbr -a gl "git log"
+abbr -a gph "git push"
+abbr -a gpl "git pull"
+abbr -a gpr "git pull --rebase"
+abbr -a gr "git rebase"
+abbr -a gg "git grep"
+abbr -a ggl "git grep -l"
+abbr -a gs "git status -s -b"
 
-alias tls "tmux ls"
-alias tmc "tmux new -s"
-alias tma "tmux a -t"
+abbr -a tls "tmux ls"
+abbr -a tmc "tmux new -s"
+abbr -a tma "tmux a -t"
 
 function gitStatusToNvim
   gs --porcelain $argv | sed s/^...// | xargs nvim
