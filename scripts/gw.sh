@@ -8,8 +8,7 @@ REQUIRED_DEPENDENCIES=(
 # TRACE AND ERROR HANDLING #
 ############################
 
-# exit on error
-set -o errexit
+set -e
 
 # exit on <Ctrl-c>
 trap 'exit 2' SIGINT
@@ -29,17 +28,14 @@ command_exists() {
 }
 
 iterate_required_dependencies() {
-  exit_code=0
   arr=($@)
   for item in "${arr[@]}"
   do
     if ! command_exists $item; then
       echo "required dependency \"${item}\" does not exist"
-      exit_code=1
+      return 1
     fi
   done
-
-  return $exit_code
 }
 
 iterate_required_dependencies "${REQUIRED_DEPENDENCIES[@]}"
@@ -49,9 +45,10 @@ args=("$@")
 help_message() {
   echo "gw: checkout pull requests to worktrees"
   echo "Usage:"
-  echo "\tgw open <branch_name>\tAdds a new local worktree from PR"
-  echo "\tgw done [<branch_name>]\tRemoves current worktree or by provided branch name"
-  echo "\tgw list\t\t\tLists all worktrees"
+  echo "\tgw open <branch_name>\t\tAdds a new local worktree from PR"
+  echo "\tgw done [<branch_name>]\t\tRemoves current worktree or by provided branch name"
+  echo "\tgw list\t\t\t\tLists all worktrees"
+  echo "\tgw find [requested | by <who>]\tReturns a list of pull requests"
 }
 
 if [ -z "${args[0]}" ]; then
@@ -59,43 +56,57 @@ if [ -z "${args[0]}" ]; then
   exit 2
 fi
 
-asserts_branch_name() {
+assert() {
   if [ -z "$1" ]; then
-    echo "branch name was not provided"
+    if [ ! -z "$2" ]; then
+      echo "$2"
+    fi
     exit 1
   fi
 }
 
-checkout_pr_to_worktree() {
-  asserts_branch_name "$1"
-  pr_refs=($(gh pr list -s all --jq=.[].headRefName --json headRefName))
+find_pr() {
+  case "$1" in
+  requested)
+      search="--search user-review-requested:@me"
+      ;;
+  by)
+      search="--search author:$2"
+      ;;
+  esac
+
+  result="$(gh pr list -s all --jq=.[].headRefName --json headRefName $search)"
+  if [ ! -z "$result" ]; then
+    echo "$result"
+  fi
+}
+
+pr_to_worktree() {
+  assert "$1" "branch name was not provided"
+
+  pr_refs=($(find_pr))
   for ref in "${pr_refs[@]}"
   do
-    echo $ref
     if [ "$1" == "$ref" ]; then
       found=true
       break
     fi
   done
 
-  if [ -z "$found" ]; then
-    echo "$1 not found in remote"
-  else
-    echo "$1 found in remote"
-  fi
-
   root="$(git rev-parse --show-toplevel)"
   # Use a hidden .git-worktrees directory for worktrees
   dir="$root/.git-worktrees/$1"
   remote="origin"
 
-  git worktree add -B "$1" "$dir" "$remote/$1"
-
-  cd "$dir"
+  if ! worktree_exists "$1"; then
+    git worktree add -B "$1" "$dir" "$remote/$1"
+    echo "\nCall to change to worktree in current shell:"
+    echo "cd $dir"
+  fi
 }
 
 # first iteration is only for yarn
-initialize_worktree() {
+init_worktree() {
   # check for yarn.lock
   root="$(git rev-parse --show-toplevel)"
   has_yarn_lock=$(find "$root/yarn.lock" 2> /dev/null)
@@ -109,7 +120,9 @@ remove_worktree() {
   if [ -z "$worktree_dir" ]; then
     worktree_dir="$(git rev-parse --show-toplevel)"
   fi
-  git worktree remove -f $worktree_dir
+  if git worktree remove -f $worktree_dir; then
+    echo "worktree \"$worktree_dir\" was removed"
+  fi
 }
 
 list_worktrees() {
@@ -118,17 +131,32 @@ list_worktrees() {
   worktree_list=($(git worktree list --porcelain | grep '.git-worktrees' | awk '{ print $2 }'))
   for worktree in "${worktree_list[@]}"
   do
-    echo "${worktree:$length}"
+    echo "${worktree:$length+1}"
   done
 }
 
+worktree_exists() {
+  arr=($(list_worktrees))
+  for worktree in "${arr[@]}"
+  do
+    if [ "$worktree" == "$1" ]; then
+      return 0
+    fi
+  done
+
+  return 1
+}
+
 case "${args[0]}" in
-list)
-    list_worktrees
+find)
+    find_pr "${args[1]}" "${args[2]}"
     ;;
 open)
-    checkout_pr_to_worktree "${args[1]}"
-    initialize_worktree
+    pr_to_worktree "${args[1]}"
+    init_worktree
+    ;;
+list)
+    list_worktrees
     ;;
 done)
     remove_worktree "${args[1]}"
