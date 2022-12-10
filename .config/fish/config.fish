@@ -15,6 +15,9 @@
 # Set homebrew bin to path
 set -gx PATH /opt/homebrew/bin $PATH
 
+# Set user bin to path
+set -gx PATH $HOME/bin $PATH
+
 # Initialize the starship configuration
 starship init fish | source
 set -g -x PATH /opt/homebrew/opt/bison/bin $PATH
@@ -26,6 +29,8 @@ alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
+
+alias cat "bat -p"
 
 # Abbreviations
 # TODO: Split to separate file
