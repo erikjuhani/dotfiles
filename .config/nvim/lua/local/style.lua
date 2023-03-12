@@ -40,3 +40,7 @@ vim.cmd [[
 vim.cmd [[
   hi link NormalFloat Default
 ]]
+
+vim.cmd [[
+  hi Visual guifg=#252525 guibg=#5f8787
+]]
