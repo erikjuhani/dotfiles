@@ -4,3 +4,4 @@ add_newline = false
 
 [character]
 success_symbol = "[≻~ᐉ](bold green)"
+error_symbol = "[≻~ᐉ](bold green)"
