@@ -24,13 +24,13 @@ end
 
 local on_attach = function(client, bufnr)
   if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
 
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup_client(client)
   end
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   end
 
