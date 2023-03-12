@@ -30,9 +30,7 @@ local on_attach = function(client, bufnr)
     ts_utils.setup_client(client)
   end
 
-  if client.server_capabilities.document_formatting then
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-  end
+  vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = true })")
 
   lsp_nmap(bufnr)
 end
@@ -45,8 +43,8 @@ nvim_lsp.diagnosticls.setup {
   init_options = {
     linters = {
       eslint = {
-        sourceName = 'eslint_d',
-        command = 'eslint_d',
+        sourceName = 'eslint',
+        command = string.format('%s/%s/%s', vim.loop.cwd(), 'node_modules/.bin', 'eslint'),
         debounce = 100,
         args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
         parseJson = {
@@ -59,8 +57,8 @@ nvim_lsp.diagnosticls.setup {
           security = 'severity'
         },
         securities = {
-          [3] = 'error',
-          [2] = 'warning'
+          [2] = 'error',
+          [1] = 'warning'
         },
         rootPatterns = {
           '.git',
@@ -80,14 +78,9 @@ nvim_lsp.diagnosticls.setup {
       typescriptreact = 'eslint',
     },
     formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git', '.eslintrc' },
-      },
       prettier = {
         sourceName = 'prettier',
-        command = 'node_modules/.bin/prettier',
+        command = string.format('%s/%s/%s', vim.loop.cwd(), 'node_modules/.bin', 'prettier'),
         args = { '--stdin', '--stdin-filepath', '%filepath' },
         rootPatterns = {
           '.prettierrc',
@@ -114,7 +107,6 @@ nvim_lsp.diagnosticls.setup {
       less = 'prettier',
       typescript = 'prettier',
       typescriptreact = 'prettier',
-      json = 'prettier',
       markdown = 'prettier',
     }
   }
