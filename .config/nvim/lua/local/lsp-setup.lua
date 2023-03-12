@@ -112,6 +112,11 @@ nvim_lsp.diagnosticls.setup {
   }
 }
 
+nvim_lsp.rust_analyzer.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact" },
