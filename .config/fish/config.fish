@@ -79,3 +79,8 @@ end
 alias grup "gitRebaseToLatest"
 
 set fish_greeting
+
+# pnpm
+set -gx PNPM_HOME "/Users/erik/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
