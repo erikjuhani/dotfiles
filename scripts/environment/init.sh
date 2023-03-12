@@ -92,6 +92,9 @@ brew_package_install starship
 # slack
 brew_package_install slack --cask
 
+# shellcheck
+brew_package_install shellcheck
+
 # karabiner-elements (required for hyperkey)
 brew_package_install karabiner-elements
 
