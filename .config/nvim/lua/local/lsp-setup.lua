@@ -159,6 +159,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
 })
 
+-- Reload file
+vim.api.nvim_create_autocmd("CursorHold", {
+  command = "checktime",
+})
+
 local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
   return

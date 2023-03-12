@@ -4,6 +4,9 @@ set.fileencoding = "utf-8"
 set.completeopt = { "menuone", "noselect" }
 set.conceallevel = 0
 
+-- Update buffer when file is changed
+set.autoread = true
+
 -- Force Vi improved
 -- set.nocompatible = true
 
