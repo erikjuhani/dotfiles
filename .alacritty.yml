@@ -14,28 +14,28 @@ font:
 
 colors:
   primary:
-    background: '#252525'
-    foreground: '#c8c8c8'
+    background: "0x27282C"
+    foreground: "0xe2e2e3"
 
   normal:
-    black:   '#252525'
-    red:     '#be7472'
-    green:   '#709772'
-    yellow:  '#989772'
-    blue:    '#7199bc'
-    magenta: '#727399'
-    cyan:    '#719899'
-    white:   '#7f7f7f'
+    black: "0x252525"
+    red: "0xfc5d7c"
+    green: "0x9ed072"
+    yellow: "0xe7c664"
+    blue: "0x76cce0"
+    magenta: "0xb39df3"
+    cyan: "0xf39660"
+    white: "0xe2e2e3"
 
   bright:
-    black:   '#555555'
-    red:     '#ff9900'
-    green:   '#97bb98'
-    yellow:  '#fefdbc'
-    blue:    '#9fbdde'
-    magenta: '#989abc'
-    cyan:    '#6fbbbc'
-    white:   '#feffff'
+    black: "0x7f8490"
+    red: "0xfc5d7c"
+    green: "0x9ed072"
+    yellow: "0xe7c664"
+    blue: "0x76cce0"
+    magenta: "0xb39df3"
+    cyan: "0xf39660"
+    white: "0xe2e2e3"
 
 shell:
   program: /opt/homebrew/bin/fish
@@ -77,7 +77,7 @@ key_bindings:
   - { key: Minus,     mods: Alt|Shift,    chars: "\xBF"                  }
 
 # Replace the default bindings for these as the VirtualKeycodes don't match reality
-  - { key: Slash,     mods: Command,      action: DecreaseFontSize       }
-  - { key: Minus,     mods: Command,      action: IncreaseFontSize       }
+  - { key: Minus,     mods: Command,      action: DecreaseFontSize       }
+  - { key: Plus,      mods: Command,      action: IncreaseFontSize       }
   - { key: N,         mods: Control|Shift, action: CreateNewWindow }
   - { key: J,         mods: Control, chars: "\x0A" }
