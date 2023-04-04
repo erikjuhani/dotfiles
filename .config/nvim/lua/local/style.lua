@@ -1,40 +1,15 @@
-require('lush')(require('apprentice').setup({
-  plugins = {
-    "cmp", -- nvim-cmp
-    "fzf",
-    "lsp",
-    "packer",
-    "telescope",
-    "treesitter"
-  },
-  langs = {
-    "c",
-    "golang",
-    "haskell",
-    "html",
-    "java",
-    "js",
-    "json",
-    "jsx",
-    "lua",
-    "markdown",
-    "ocaml",
-    "python",
-    "ruby",
-    "rust",
-    "scala",
-    "typescript",
-    "viml",
-  }
-}))
-
 vim.cmd [[
   filetype plugin on
   syntax enable
   set termguicolors
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set background=dark
-  colorscheme apprentice
+  let g:sonokai_better_performance=1
+  let g:sonokai_enable_italic=1
+  let g:sonokai_transparent_background=1
+  let g:sonokai_diagnostic_line_highlight=1
+  let g:sonokai_diagnostic_virtual_text='colored'
+  colorscheme sonokai
 ]]
 
 vim.cmd [[

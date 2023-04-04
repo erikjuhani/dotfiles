@@ -47,10 +47,8 @@ return packer.startup(function(use)
   -- git commands
   use "tpope/vim-fugitive"
 
-  use {
-    "adisen99/apprentice.nvim",
-    requires = {"rktjmp/lush.nvim"},
-  }
+  -- style
+  use "sainnhe/sonokai"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
