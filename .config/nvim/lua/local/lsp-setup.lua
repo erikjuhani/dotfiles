@@ -172,6 +172,7 @@ treesitter.setup {
     "typescript",
     "lua",
     "javascript",
+    "haskell",
     "go",
     "fish",
     "vim",
