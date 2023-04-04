@@ -17,5 +17,5 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-  hi Visual guifg=#252525 guibg=#5f8787
+  hi Visual guifg=NONE guibg=#3f3f3f
 ]]
