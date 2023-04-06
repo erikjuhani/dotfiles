@@ -13,7 +13,11 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-  hi link NormalFloat Default
+  hi NormalFloat guifg=NONE guibg=NONE
+  hi FloatBorder guibg=NONE
+  hi DiagnosticFloatingError guifg=#fc5d7c guibg=NONE
+  hi DiagnosticFloatingWarn guifg=#e7c664 guibg=NONE
+  hi DiagnosticFloatingInfo guifg=#76cce0 guibg=NONE
 ]]
 
 vim.cmd [[
