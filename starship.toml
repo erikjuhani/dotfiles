@@ -4,4 +4,16 @@ add_newline = false
 
 [character]
 success_symbol = "[≻~ᐉ](bold green)"
-error_symbol = "[≻~ᐉ](bold green)"
+error_symbol = "[≻~ᐉ](bold red)"
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[git_status]
+format = '$ahead_behind$modified$stashed$staged$untracked$diverged$conflicted$up_to_date'
+ahead = '[⇡](yellow) '
+behind = '[⇣](cyan) '
+untracked = '[×u](yellow) '
+stashed = '[⚑](red) '
+modified = '\(✧m\) '
+staged = '[✦s](green) '
