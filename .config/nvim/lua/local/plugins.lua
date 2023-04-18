@@ -16,20 +16,19 @@ local plugins = {
   "nvim-lua/plenary.nvim",
 
   -- cache
-  {
-    'lewis6991/impatient.nvim',
-    lazy = false,
-    priority = 1001,
-  },
+  { "lewis6991/impatient.nvim", lazy = false, priority = 1500 },
 
   -- git commands
   "tpope/vim-fugitive",
 
+  -- Statusline
+  { "itchyny/lightline.vim", lazy = false, dependencies = { "sainnhe/sonokai" } },
+
   -- style
   { 
     "sainnhe/sonokai",
-    lazy = false,
     priority = 1000,
+    lazy = false,
     config = function()
       -- TODO: Re-organize plugin configurations to own folder config/<plugin>.lua
       vim.cmd [[
@@ -60,6 +59,8 @@ local plugins = {
     end,
   },
 
+  "nvim-tree/nvim-web-devicons",
+
   -- cmp plugins
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-nvim-lsp",
@@ -72,6 +73,16 @@ local plugins = {
   -- lsp
   "neovim/nvim-lspconfig",
   "jose-elias-alvarez/nvim-lsp-ts-utils",
+
+  {
+    "williamboman/mason.nvim",
+    run = ":MasonUpdate",
+    config = function()
+      require("local.config.mason")
+    end,
+  },
+
+  "williamboman/mason-lspconfig.nvim",
 
   -- telescope
   {
@@ -97,9 +108,6 @@ local plugins = {
     run = ":TSUpdate",
   },
 
-  -- Statusline
-  "itchyny/lightline.vim",
-
   -- Motion
   "chaoren/vim-wordmotion",
   "FooSoft/vim-argwrap",
@@ -114,4 +122,24 @@ if not ok then
   return
 end
 
-lazy.setup(plugins)
+lazy.setup(plugins, {
+  defaults = { lazy = true },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  }
+})
