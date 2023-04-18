@@ -1,6 +1,6 @@
+require "local.options"
 require "local.plugins"
 require "impatient"
-require "local.options"
 require "local.keymaps"
 require "local.lsp-setup"
 require "local.cmp"
