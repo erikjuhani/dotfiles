@@ -12,9 +12,6 @@ local function xmap(lhs, rhs) set_keymap("x", lhs, rhs, opts) end
 -- Leader as <Space>
 set_keymap("", "<Space>", "", opts)
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 nmap("<Up>", "") 
 nmap("<Down>", "") 
 nmap("<Left>", "") 
@@ -35,3 +32,9 @@ nmap("<Leader>w", "*``cgn")
 nmap("<Leader>W", "#``cgN")
 xmap("<Leader>w", "<Esc>:let @/ = GetVisualSelection()<CR>cgn")
 xmap("<Leader>W", "<Esc>:let @/ = GetVisualSelection()<CR>cgN")
+
+-- Telescope
+nmap("<Leader>ff", "<cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>")
+nmap("<Leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
+nmap("<Leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<CR>")
+nmap("<Leader>gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")

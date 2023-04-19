@@ -1,9 +1,9 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
+local ok, telescope = pcall(require, "telescope")
+if not ok then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
 telescope.setup{
   extensions = {
@@ -51,8 +51,6 @@ telescope.setup{
   }
 }
 
-require('telescope').load_extension('fzf')
-
 -- Show minimal search box for file find
 function minimal_finder()
   return require('telescope.themes').get_dropdown({
@@ -68,15 +66,6 @@ function minimal_finder()
     prompt_title = false
   })
 end
-
-local opts = { noremap = true, silent = true }
-local set_keymap = vim.api.nvim_set_keymap
-local function nmap(lhs, rhs) set_keymap("n", lhs, rhs, opts) end
-
-nmap("<Leader>ff", "<cmd>lua require('telescope.builtin').find_files(minimal_finder())<CR>")
-nmap("<Leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
-nmap("<Leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<CR>")
-nmap("<Leader>gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
 
 -- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

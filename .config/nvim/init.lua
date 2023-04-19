@@ -1,8 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 require "local.options"
-require "local.plugins"
-require "impatient"
+require "local.lazy"
 require "local.keymaps"
-require "local.lsp-setup"
-require "local.cmp"
-require "local.telescope"
-require "local.lightline"

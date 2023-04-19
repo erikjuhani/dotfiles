@@ -1,8 +1,36 @@
--- TODO use lsp-installer
-local status_ok, nvim_lsp = pcall(require, "lspconfig")
-if not status_ok then
- return
+local ok, mason = pcall(require, "mason")
+if not ok then
+  return
 end
+
+mason.setup()
+
+local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not ok then
+  return
+end
+
+local servers = {
+  "clangd",
+  "cssls",
+  -- "denols",
+  "dockerls",
+  "diagnosticls",
+  -- "eslint",
+  "gopls",
+  "graphql",
+  "jsonls",
+  "lua_ls",
+  "prismals",
+  "rust_analyzer",
+  "taplo",
+  "tsserver",
+  "yamlls",
+}
+
+mason_lspconfig.setup({
+  ensure_installed = servers,
+})
 
 local opts = { noremap = true, silent = true }
 local set_buf_keymap = vim.api.nvim_buf_set_keymap
@@ -29,14 +57,30 @@ local on_attach = function(client, bufnr)
     ts_utils.setup_client(client)
   end
 
-  vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = true })")
+  if client.name == "rust-analyzer" then
+    vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = true })")
+  else
+    vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format()")
+  end
 
   lsp_nmap(bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-nvim_lsp.diagnosticls.setup {
+local ok, lspconfig = pcall(require, "lspconfig")
+if not ok then
+	return
+end
+
+for _, server in ipairs(servers) do
+  lspconfig[server].setup({
+    capabilities = capabilities,
+    on_attach = on_attach
+  })
+end
+
+lspconfig.diagnosticls.setup {
   on_attach = on_attach,
   filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
@@ -111,18 +155,13 @@ nvim_lsp.diagnosticls.setup {
   }
 }
 
-nvim_lsp.rust_analyzer.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-nvim_lsp.tsserver.setup {
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact" },
   capabilities = capabilities
 }
 
-nvim_lsp.gopls.setup{
+lspconfig.gopls.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {"gopls", "serve"},
