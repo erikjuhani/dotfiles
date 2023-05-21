@@ -46,7 +46,7 @@ local lsp_nmap = function(bufnr)
   nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
   nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>")
   nmap("<Leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>")
-  nmap("<leader>a",":ArgWrap<cr>")
+  nmap("<leader>a", ":ArgWrap<cr>")
 end
 
 local on_attach = function(client, bufnr)
@@ -70,7 +70,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 
 local ok, lspconfig = pcall(require, "lspconfig")
 if not ok then
-	return
+  return
 end
 
 for _, server in ipairs(servers) do
@@ -82,7 +82,8 @@ end
 
 lspconfig.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss',
+    'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {
@@ -161,10 +162,10 @@ lspconfig.tsserver.setup {
   capabilities = capabilities
 }
 
-lspconfig.gopls.setup{
+lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {"gopls", "serve"},
+  cmd = { "gopls", "serve" },
   settings = {
     gopls = {
       analyses = {

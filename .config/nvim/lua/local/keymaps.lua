@@ -12,10 +12,10 @@ local function xmap(lhs, rhs) set_keymap("x", lhs, rhs, opts) end
 -- Leader as <Space>
 set_keymap("", "<Space>", "", opts)
 
-nmap("<Up>", "") 
-nmap("<Down>", "") 
-nmap("<Left>", "") 
-nmap("<Right>", "") 
+nmap("<Up>", "")
+nmap("<Down>", "")
+nmap("<Left>", "")
+nmap("<Right>", "")
 
 -- Window navigation
 nmap("<C-h>", "<C-w>h")
@@ -38,3 +38,6 @@ nmap("<Leader>ff", "<cmd>lua require('telescope.builtin').find_files(minimal_fin
 nmap("<Leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 nmap("<Leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<CR>")
 nmap("<Leader>gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
+
+-- Oil
+nmap("<leader>e", "<cmd>lua require('oil').toggle_float()<cr>")

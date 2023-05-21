@@ -26,6 +26,18 @@ local plugins = {
     end,
   },
 
+  "nvim-tree/nvim-web-devicons",
+
+  -- filesystem manipulation in buffer
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("local.oil")
+    end,
+  },
+
   -- git commands
   { "tpope/vim-fugitive",     lazy = false },
 
@@ -48,8 +60,6 @@ local plugins = {
       require("local.sonokai")
     end,
   },
-
-  "nvim-tree/nvim-web-devicons",
 
   -- cmp plugins
   {
