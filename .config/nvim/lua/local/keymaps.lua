@@ -12,6 +12,7 @@ local function xmap(lhs, rhs) set_keymap("x", lhs, rhs, opts) end
 -- Leader as <Space>
 set_keymap("", "<Space>", "", opts)
 
+-- No arrow keys
 nmap("<Up>", "")
 nmap("<Down>", "")
 nmap("<Left>", "")
@@ -41,3 +42,9 @@ nmap("<Leader>gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
 
 -- Oil
 nmap("<leader>e", "<cmd>lua require('oil').toggle_float()<cr>")
+
+-- Diagnostic
+nmap("<Leader>l", "<cmd>lua vim.diagnostic.open_float()<cr>")
+
+-- Wrap args
+nmap("<leader>a", ":ArgWrap<cr>")

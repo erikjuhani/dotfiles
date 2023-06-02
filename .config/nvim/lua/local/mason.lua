@@ -34,13 +34,12 @@ end
 
 local lsp_nmap = function(bufnr)
   local nmap = buf_nmap(bufnr)
-  nmap("<Leader>l", "<cmd>lua vim.diagnostic.open_float()<cr>")
   nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+  nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>")
   nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
   nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
   nmap("K", "<cmd>lua vim.lsp.buf.hover()<cr>")
   nmap("<Leader>r", "<cmd>lua vim.lsp.buf.rename()<cr>")
-  nmap("<leader>a", ":ArgWrap<cr>")
 end
 
 local on_attach = function(client, bufnr)
