@@ -38,6 +38,16 @@ local plugins = {
     end,
   },
 
+  -- diagnostics and formatting
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("local.null-ls")
+    end,
+  },
+
   -- git commands
   { "tpope/vim-fugitive",     lazy = false },
 

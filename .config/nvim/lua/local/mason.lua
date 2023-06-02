@@ -15,7 +15,6 @@ local servers = {
   "cssls",
   -- "denols",
   "dockerls",
-  "diagnosticls",
   -- "eslint",
   "gopls",
   "graphql",
@@ -73,87 +72,9 @@ if not ok then
   return
 end
 
-for _, server in ipairs(servers) do
-  lspconfig[server].setup({
-    capabilities = capabilities,
-    on_attach = on_attach
-  })
-end
-
-lspconfig.diagnosticls.setup {
-  on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss',
-    'markdown', 'pandoc' },
-  init_options = {
-    linters = {
-      eslint = {
-        sourceName = 'eslint',
-        command = string.format('%s/%s/%s', vim.loop.cwd(), 'node_modules/.bin', 'eslint'),
-        debounce = 100,
-        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[${ruleId}]: ${message}',
-          security = 'severity'
-        },
-        securities = {
-          [3] = 'error',
-          [2] = 'warning'
-        },
-        rootPatterns = {
-          '.git',
-          '.eslintrc',
-          '.eslintrc.cjs',
-          '.eslintrc.js',
-          '.eslintrc.json',
-          '.eslintrc.yaml',
-          '.eslintrc.yml',
-        },
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      prettier = {
-        sourceName = 'prettier',
-        command = string.format('%s/%s/%s', vim.loop.cwd(), 'node_modules/.bin', 'prettier'),
-        args = { '--stdin', '--stdin-filepath', '%filepath' },
-        rootPatterns = {
-          '.prettierrc',
-          '.prettierrc.json',
-          '.prettierrc.toml',
-          '.prettierrc.json',
-          '.prettierrc.yml',
-          '.prettierrc.yaml',
-          '.prettierrc.json5',
-          '.prettierrc.js',
-          '.prettierrc.cjs',
-          'prettier.config.js',
-          'prettier.config.cjs',
-          '.git',
-        },
-      }
-    },
-    formatFiletypes = {
-      css = 'prettier',
-      javascript = 'prettier',
-      javascriptreact = 'prettier',
-      json = 'prettier',
-      scss = 'prettier',
-      less = 'prettier',
-      typescript = 'prettier',
-      typescriptreact = 'prettier',
-      markdown = 'prettier',
-    }
-  }
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach
 }
 
 lspconfig.tsserver.setup {
