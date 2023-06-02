@@ -15,16 +15,11 @@ local servers = {
   "cssls",
   -- "denols",
   "dockerls",
-  -- "eslint",
   "gopls",
-  "graphql",
   "jsonls",
   "lua_ls",
-  "prismals",
   "rust_analyzer",
-  "taplo",
   "tsserver",
-  "yamlls",
 }
 
 mason_lspconfig.setup({
