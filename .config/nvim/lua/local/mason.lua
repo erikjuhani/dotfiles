@@ -45,17 +45,11 @@ end
 
 local on_attach = function(client, bufnr)
   if client.name == "tsserver" then
-    client.server_capabilities.document_formatting = false
-
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup_client(client)
   end
 
-  if client.name == "rust-analyzer" then
-    vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = true })")
-  else
-    vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format()")
-  end
+  vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = true })")
 
   lsp_nmap(bufnr)
 end
