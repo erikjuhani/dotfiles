@@ -13,7 +13,7 @@ end
 local servers = {
   "clangd",
   "cssls",
-  -- "denols",
+  "denols",
   "dockerls",
   "gopls",
   "jsonls",
@@ -25,6 +25,10 @@ local servers = {
 mason_lspconfig.setup({
   ensure_installed = servers,
 })
+
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
 
 local opts = { noremap = true, silent = true }
 local set_buf_keymap = vim.api.nvim_buf_set_keymap
@@ -65,10 +69,17 @@ lspconfig.lua_ls.setup {
   on_attach = on_attach
 }
 
+lspconfig.denols.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact" },
-  capabilities = capabilities
+  capabilities = capabilities,
+  single_file_support = false,
+  root_dir = lspconfig.util.root_pattern("package.json"),
 }
 
 lspconfig.gopls.setup {
