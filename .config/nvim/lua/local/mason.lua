@@ -18,7 +18,6 @@ local servers = {
   "gopls",
   "jsonls",
   "lua_ls",
-  "rust_analyzer",
   "tsserver",
 }
 
@@ -64,10 +63,17 @@ if not ok then
   return
 end
 
-lspconfig.rust_analyzer.setup {
-  capabilities = capabilities,
-  on_attach = on_attach
-}
+local ok, rt = pcall(require, "rust-tools")
+if not ok then
+  return
+end
+
+rt.setup({
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach
+  },
+})
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,

@@ -146,6 +146,7 @@ local plugins = {
 
   -- Language specifics
   "ray-x/go.nvim",
+  "simrat39/rust-tools.nvim",
 }
 
 -- Use a protected call so we don"t error out on first use
