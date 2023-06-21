@@ -36,7 +36,9 @@ null_ls.setup {
   end,
   sources = {
     formatting.prettier,
-    formatting.shfmt,
+    formatting.shfmt.with({
+      extra_args = { "-i", "2", "-ci", "-w" },
+    }),
     diagnostics.eslint,
     diagnostics.shellcheck,
   },
