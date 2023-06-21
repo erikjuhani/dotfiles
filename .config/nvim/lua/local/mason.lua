@@ -76,6 +76,7 @@ rt.setup({
 })
 
 lspconfig.lua_ls.setup {
+  filetypes = { 'lua' },
   capabilities = capabilities,
   on_attach = on_attach
 }
