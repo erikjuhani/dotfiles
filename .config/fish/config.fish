@@ -64,6 +64,8 @@ abbr -a tls "tmux ls"
 abbr -a tmc "tmux new -s"
 abbr -a tma "tmux a -t"
 
+abbr refr "source $HOME/.config/fish/config.fish"
+
 function gitStatusToNvim
   gs --porcelain $argv | sed s/^...// | xargs nvim
 end
