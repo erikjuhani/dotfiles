@@ -20,6 +20,10 @@ set -gx PATH $HOME/bin $PATH
 
 # Initialize the starship configuration
 starship init fish | source
+
+# Initialize zoxide and update autocomplete
+zoxide init fish | source
+
 set -g -x PATH /opt/homebrew/opt/bison/bin $PATH
 
 set -x GOPATH $HOME/go
