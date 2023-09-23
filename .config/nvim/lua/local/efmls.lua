@@ -2,6 +2,7 @@ local eslint = require("efmls-configs.linters.eslint")
 local shellcheck = require("efmls-configs.linters.shellcheck")
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
+local rustfmt = require("efmls-configs.formatters.rustfmt")
 local lspconfig = require("lspconfig")
 
 local local_shfmt = {
@@ -13,6 +14,7 @@ local local_shfmt = {
 local languages = {
   typescript = { eslint, prettier },
   sh = { shellcheck, local_shfmt },
+  rust = { rustfmt },
 }
 
 lspconfig.efm.setup {

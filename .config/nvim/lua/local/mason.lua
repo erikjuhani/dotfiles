@@ -52,8 +52,6 @@ local on_attach = function(client, bufnr)
     ts_utils.setup_client(client)
   end
 
-  vim.cmd("autocmd BufWritePre * :lua vim.lsp.buf.format({ async = false })")
-
   lsp_nmap(bufnr)
 end
 
