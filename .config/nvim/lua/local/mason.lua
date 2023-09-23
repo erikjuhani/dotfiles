@@ -119,8 +119,6 @@ lspconfig.gopls.setup {
 
 require('go').setup()
 
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
-
 -- Highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
