@@ -40,11 +40,10 @@ local plugins = {
 
   -- diagnostics and formatting
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "creativenull/efmls-configs-nvim",
     lazy = false,
-    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("local.null-ls")
+      require("local.efmls")
     end,
   },
 

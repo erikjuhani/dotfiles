@@ -15,6 +15,7 @@ local servers = {
   "cssls",
   "denols",
   "dockerls",
+  "efm",
   "gopls",
   "jsonls",
   "lua_ls",
