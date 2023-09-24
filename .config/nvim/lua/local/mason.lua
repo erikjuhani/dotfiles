@@ -67,6 +67,14 @@ if not ok then
   return
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "gomod" },
+  callback = function()
+    require('go').setup()
+  end,
+  group = vim.api.nvim_create_augroup("GoFileType", {})
+})
+
 rt.setup({
   server = {
     capabilities = capabilities,
@@ -116,8 +124,6 @@ lspconfig.gopls.setup {
     },
   },
 }
-
-require('go').setup()
 
 -- Highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
