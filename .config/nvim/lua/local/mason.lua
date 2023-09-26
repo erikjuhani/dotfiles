@@ -16,6 +16,7 @@ local servers = {
   "denols",
   "dockerls",
   "efm",
+  "eslint",
   "gopls",
   "jsonls",
   "lua_ls",
@@ -81,6 +82,18 @@ rt.setup({
     on_attach = on_attach
   },
 })
+
+lspconfig.eslint.setup {
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern(".git"),
+  on_attach = function(_, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+}
 
 lspconfig.lua_ls.setup {
   filetypes = { 'lua' },
