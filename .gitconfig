@@ -1,9 +1,7 @@
 [user]
 	email = erik.kinn@gmail.com
 	name = Erik Kinnunen
-
-[pull]
-	rebase = true
+	useConfigOnly = true
 
 [core]
 	pager = delta
@@ -30,3 +28,6 @@
 
 [push]
 	autoSetupRemote = true
+
+[pull]
+	rebase = true
