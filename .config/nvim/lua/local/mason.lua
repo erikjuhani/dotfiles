@@ -40,6 +40,7 @@ end
 local lsp_nmap = function(bufnr)
   local nmap = buf_nmap(bufnr)
   nmap("gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+  nmap("<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
   nmap("gr", "<cmd>lua vim.lsp.buf.references()<cr>")
   nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
   nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
