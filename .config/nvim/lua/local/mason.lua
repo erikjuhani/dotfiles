@@ -102,10 +102,20 @@ lspconfig.lua_ls.setup {
   on_attach = on_attach
 }
 
+vim.api.nvim_create_user_command("DenoFormat", function()
+    vim.cmd(string.format('silent !deno fmt %s', vim.api.nvim_buf_get_name(0)))
+end, {})
+
 lspconfig.denols.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      buffer = bufnr,
+      command = "DenoFormat",
+    })
+    on_attach(client, bufnr)
+  end
 }
 
 lspconfig.tsserver.setup {
