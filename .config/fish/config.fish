@@ -91,3 +91,6 @@ set -gx PNPM_HOME "$HOME/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
 set -x PATH $HOME/.shm $PATH
+
+set -x DENO_INSTALL "$HOME/.deno"
+set -gx PATH "$DENO_INSTALL/bin:$PATH"
