@@ -87,7 +87,7 @@ rt.setup({
 lspconfig.eslint.setup {
   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern(".git"),
+  root_dir = lspconfig.util.root_pattern("package.json"),
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
