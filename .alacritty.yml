@@ -12,30 +12,56 @@ font:
     family: JetBrainsMono Nerd Font Mono
     style: Thin
 
-colors:
-  primary:
-    background: "0x27282C"
-    foreground: "0xe2e2e3"
+schemes:
+  sonokai: &sonokai
+    primary:
+      background: "0x27282C"
+      foreground: "0xe2e2e3"
 
-  normal:
-    black: "0x252525"
-    red: "0xfc5d7c"
-    green: "0x9ed072"
-    yellow: "0xe7c664"
-    blue: "0x76cce0"
-    magenta: "0xb39df3"
-    cyan: "0xf39660"
-    white: "0xe2e2e3"
+    normal:
+      black: "0x252525"
+      red: "0xfc5d7c"
+      green: "0x9ed072"
+      yellow: "0xe7c664"
+      blue: "0x76cce0"
+      magenta: "0xb39df3"
+      cyan: "0xf39660"
+      white: "0xe2e2e3"
 
-  bright:
-    black: "0x7f8490"
-    red: "0xfc5d7c"
-    green: "0x9ed072"
-    yellow: "0xe7c664"
-    blue: "0x76cce0"
-    magenta: "0xb39df3"
-    cyan: "0xf39660"
-    white: "0xe2e2e3"
+    bright:
+      black: "0x7f8490"
+      red: "0xfc5d7c"
+      green: "0x9ed072"
+      yellow: "0xe7c664"
+      blue: "0x76cce0"
+      magenta: "0xb39df3"
+      cyan: "0xf39660"
+      white: "0xe2e2e3"
+
+  everforest_dark_hard: &everforest_dark_hard
+    primary:
+      background: '#272e33'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#414b50'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#475258'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+
+colors: *everforest_dark_hard
 
 shell:
   program: /opt/homebrew/bin/fish

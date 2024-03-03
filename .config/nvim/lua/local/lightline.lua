@@ -3,6 +3,6 @@ vim.cmd [[
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'modified', 'readonly', 'relativepath' ] ],
     \ },
-    \ 'colorscheme': 'sonokai',
+    \ 'colorscheme': 'everforest',
     \ }
 ]]

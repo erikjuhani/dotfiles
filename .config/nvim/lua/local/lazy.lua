@@ -54,7 +54,7 @@ local plugins = {
   {
     "itchyny/lightline.vim",
     lazy = false,
-    dependencies = { "sainnhe/sonokai" },
+    dependencies = { "sainnhe/everforest" },
     config = function()
       require("local.lightline")
     end,
@@ -71,11 +71,11 @@ local plugins = {
 
   -- style
   {
-    "sainnhe/sonokai",
+    "sainnhe/everforest",
     priority = 1000,
     lazy = false,
     config = function()
-      require("local.sonokai")
+      require("local.everforest")
     end,
   },
 
