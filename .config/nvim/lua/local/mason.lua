@@ -169,11 +169,12 @@ lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       prefix = '',
       format = function(diagnostic)
         local m = diagnostic.message
+        local source = diagnostic.source
         -- truncate long diagnostic messages
         if m:len() > 20 then
           m = m:sub(1, 20) .. '..'
         end
-        return string.format("%s", m)
+        return string.format("[%s] %s", source, m)
       end
     },
     signs = true,
