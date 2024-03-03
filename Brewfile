@@ -1,8 +1,11 @@
+# Fonts
+tap "homebrew/cask-fonts"
+cask "font-blex-mono-nerd-font" # IBM Plex Mono
+
 # Terminal
 brew "fish"
 brew "starship"
 cask "alacritty"
-cask "lynx"
 
 # Git diff
 brew "git-delta"
@@ -11,30 +14,28 @@ brew "git-delta"
 brew "nvim"
 
 # Necessary tooling
-brew "ripgrep"
-brew "fzf"
 brew "jq"
 brew "yq"
+brew "ripgrep"
 brew "tmux"
+brew "fzf"
 brew "zoxide"
 
 # Virtualization
-brew "podman"
 brew "docker"
 
 # GUI tools
 brew "yabai"
 brew "skhd"
 
-# Languages
-brew "python3"
-brew "luajit"
-
 # Better cat
 brew "bat"
 
 # Diagrams
-brew "plantuml"
+# brew "plantuml"
+
+# Monitoring
+brew "bottom"
 
 # Fun
 brew "gum"
@@ -51,19 +52,19 @@ brew "tldr"
 # Benchmarking tool
 brew "hyperfine"
 
-# System information
-brew "gtop"
-brew "gping"
-
 # Github CLI
 brew "gh"
 
 # Apps
-# Communication
+## Containers
+cask "docker"
+## Communication
 cask "slack"
-# Notes and knowledge base
+## Notes and knowledge base
 cask "obsidian"
-# UI design
+## UI design
 cask "figma"
-# Keybinding
+## Image manipulation
+cask "gimp"
+## Keybinding
 cask "karabiner-elements"
