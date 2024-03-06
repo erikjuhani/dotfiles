@@ -206,7 +206,7 @@ foreground = "0xe2e2e3"
 
 [shell]
 args = ["-l", "-c", "tmux attach || tmux"]
-program = "/opt/homebrew/bin/fish"
+program = "/usr/local/bin/fish"
 
 [window]
 decorations = "buttonless"
