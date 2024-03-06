@@ -21,6 +21,7 @@ local servers = {
   "jsonls",
   "lua_ls",
   "tsserver",
+  "yamlls",
 }
 
 mason_lspconfig.setup({
@@ -98,6 +99,18 @@ lspconfig.eslint.setup {
 
 lspconfig.lua_ls.setup {
   filetypes = { 'lua' },
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+
+lspconfig.jsonls.setup {
+  filetypes = { 'json', 'json5' },
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+
+lspconfig.yamlls.setup {
+  filetypes = { '.yml', '.yaml' },
   capabilities = capabilities,
   on_attach = on_attach
 }
