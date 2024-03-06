@@ -21,9 +21,9 @@ ln -s "$BASE_PATH/.skhdrc" "$HOME/.skhdrc"
 rm -f "$HOME/.config/starship.toml"
 ln -s "$BASE_PATH/starship.toml" "$HOME/.config/starship.toml"
 
-# alacritty.yml
-rm -f "$HOME/.alacritty.yml"
-ln -s "$BASE_PATH/.alacritty.yml" "$HOME/.alacritty.yml"
+# alacritty.toml
+rm -f "$HOME/.alacritty.toml"
+ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 
 # yabairc
 rm -f "$HOME/.yabairc"
