@@ -20,6 +20,8 @@ brew "ripgrep"
 brew "tmux"
 brew "fzf"
 brew "zoxide"
+brew "eza"
+brew "sqlite"
 
 # Virtualization
 brew "docker"
