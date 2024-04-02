@@ -58,7 +58,7 @@ abbr -a gpr "git pull --rebase"
 abbr -a gr "git rebase"
 abbr -a gg "git grep"
 abbr -a ggl "git grep -l"
-abbr -a gs "git status -s -b"
+alias gs "git status -s -b || ls -la"
 
 abbr -a tls "tmux ls"
 abbr -a tmc "tmux new -s"
