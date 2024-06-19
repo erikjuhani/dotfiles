@@ -38,5 +38,5 @@ rm -r "$HOME/.config/nvim"
 ln -s "$BASE_PATH/.config/nvim" "$HOME/.config/nvim"
 
 # gitconfig
-rm -r "$HOME/.gitconfig"
+rm "$HOME/.gitconfig"
 ln -s "$BASE_PATH/.gitconfig" "$HOME/.gitconfig"
