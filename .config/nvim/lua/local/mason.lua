@@ -21,6 +21,7 @@ local servers = {
   "gopls",
   "jsonls",
   "lua_ls",
+  "tailwindcss",
   "tsserver",
   "yamlls",
 }
@@ -100,6 +101,12 @@ lspconfig.eslint.setup {
 
 lspconfig.marksman.setup {
   filetypes = { 'markdown' },
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+
+lspconfig.tailwindcss.setup {
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   capabilities = capabilities,
   on_attach = on_attach
 }
