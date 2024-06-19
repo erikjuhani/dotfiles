@@ -35,3 +35,4 @@
   amend = commit --amend
   push-with-lease = push --force-with-lease
   slog = log --pretty='%C(green)%h%Creset%C(yellow)%d%Creset %s %C(cyan)%ar%Creset'
+  fixup = git-fixup

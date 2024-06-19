@@ -9,6 +9,7 @@ fi
 
 shm get erikjuhani/tm
 shm get erikjuhani/ql
+shm get erikjuhani/git-fixup
 
 if ! command -v "shm" >/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
