@@ -6,7 +6,7 @@ cask "font-blex-mono-nerd-font" # IBM Plex Mono
 brew "fish"
 brew "fisher"
 brew "starship"
-cask "alacritty"
+cask "alacritty", args: { no_quarantine: true }
 
 # Git diff
 brew "git-delta"
