@@ -18,6 +18,9 @@ set -gx PATH /opt/homebrew/bin $PATH
 # Set user bin to path
 set -gx PATH $HOME/bin $PATH
 
+# Set cargo bin to path
+set -gx PATH $HOME/.cargo/bin $PATH
+
 # Initialize the starship configuration
 starship init fish | source
 
