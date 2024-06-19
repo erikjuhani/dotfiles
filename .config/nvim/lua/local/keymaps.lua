@@ -28,6 +28,10 @@ nmap("<C-l>", "<C-w>l")
 nmap("<S-l>", ":bnext<CR>")
 nmap("<S-h>", ":bprevious<CR>")
 
+-- Diagnostics
+nmap("<Leader>n", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+nmap("<Leader>p", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+
 -- Rename
 nmap("<Leader>w", "*``cgn")
 nmap("<Leader>W", "#``cgN")
