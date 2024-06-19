@@ -28,8 +28,9 @@ brew "sqlite"
 brew "node"
 
 # GUI tools
-brew "yabai"
-brew "skhd"
+tap "koekeishiya/formulae"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
 
 # Better cat
 brew "bat"
