@@ -21,6 +21,10 @@ ln -s "$BASE_PATH/.skhdrc" "$HOME/.skhdrc"
 rm -f "$HOME/.config/starship.toml"
 ln -s "$BASE_PATH/starship.toml" "$HOME/.config/starship.toml"
 
+# fish config
+rm -f "$HOME/.config/fish/config.fish"
+ln -s "$BASE_PATH/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
+
 # alacritty.toml
 rm -f "$HOME/.alacritty.toml"
 ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
