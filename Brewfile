@@ -8,13 +8,15 @@ brew "fisher"
 brew "starship"
 cask "alacritty", args: { no_quarantine: true }
 
-# Git diff
+# Git
+brew "git"
 brew "git-delta"
 
 # Editor
 brew "nvim"
 
 # Necessary tooling
+brew "go"
 brew "jq"
 brew "yq"
 brew "ripgrep"
@@ -23,9 +25,7 @@ brew "fzf"
 brew "zoxide"
 brew "eza"
 brew "sqlite"
-
-# Virtualization
-brew "docker"
+brew "node"
 
 # GUI tools
 brew "yabai"
@@ -71,3 +71,5 @@ cask "figma"
 cask "gimp"
 ## Keybinding
 cask "karabiner-elements"
+## Browser
+cask "firefox"
