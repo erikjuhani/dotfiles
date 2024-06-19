@@ -11,8 +11,13 @@ if ! command -v "shm" >/dev/null; then
   fi
 fi
 
+# tmux session manager
 shm get erikjuhani/tm
+# personal logging and journal cli util
 shm get erikjuhani/ql
+# advent of code cli util
+shm get erikjuhani/hop
+# git fixup util
 shm get erikjuhani/git-fixup
 
 if ! command -v "brew" >/dev/null; then
