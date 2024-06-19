@@ -17,6 +17,7 @@ local servers = {
   "dockerls",
   "efm",
   "eslint",
+  "marksman",
   "gopls",
   "jsonls",
   "lua_ls",
@@ -95,6 +96,12 @@ lspconfig.eslint.setup {
       command = "EslintFixAll",
     })
   end,
+}
+
+lspconfig.marksman.setup {
+  filetypes = { 'markdown' },
+  capabilities = capabilities,
+  on_attach = on_attach
 }
 
 lspconfig.lua_ls.setup {
