@@ -4,6 +4,7 @@ cask "font-blex-mono-nerd-font" # IBM Plex Mono
 
 # Terminal
 brew "fish"
+brew "fisher"
 brew "starship"
 cask "alacritty"
 
