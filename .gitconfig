@@ -23,7 +23,8 @@
 	conflictstyle = zdiff3
 
 [diff]
-	colorMoved = default
+	colorMoved = dimmed-zebra
+	colorMovedWS = ignore-all-space
 
 [init]
 	defaultBranch = main
