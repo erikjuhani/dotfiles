@@ -2,6 +2,9 @@
 	name = Erik Kinnunen
 	useConfigOnly = true
 
+[status]
+	short = true
+
 [core]
 	pager = delta
 	editor = nvim
