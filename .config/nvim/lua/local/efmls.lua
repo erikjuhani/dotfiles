@@ -13,7 +13,9 @@ local local_shfmt = {
 }
 
 local languages = {
+  javascript = { prettier },
   typescript = { prettier },
+  typescriptreact = { prettier },
   sh = { shellcheck, local_shfmt },
   rust = { rustfmt },
   go = { goimports, gofmt },
