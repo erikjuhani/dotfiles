@@ -59,6 +59,9 @@ brew "hyperfine"
 # Github CLI
 brew "gh"
 
+# LLM
+brew "ollama"
+
 # Apps
 ## Containers
 cask "docker"
