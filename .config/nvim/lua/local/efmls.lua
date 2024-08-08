@@ -13,6 +13,7 @@ local local_shfmt = {
 }
 
 local languages = {
+  json = { prettier },
   javascript = { prettier },
   typescript = { prettier },
   typescriptreact = { prettier },
