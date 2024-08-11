@@ -11,6 +11,10 @@ if ! command -v "shm" >/dev/null; then
   fi
 fi
 
+if [ ! -f "${HOME}/.todo.md" ]; then
+  cp ./.todo.template.md "${HOME}/.todo.md"
+fi
+
 # tmux session manager
 shm get erikjuhani/tm
 # personal logging and journal cli util
