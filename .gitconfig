@@ -35,10 +35,13 @@
 [pull]
 	rebase = true
 
+[branch]
+	sort = -committerdate
+
 [alias]
-  amend = commit --amend
-  push-with-lease = push --force-with-lease
-  slog = log --pretty='%C(green)%h%Creset%C(yellow)%d%Creset %s %C(cyan)%ar%Creset'
-  fixup = git-fixup
-  pr = !gh pr checkout
-  pr-list = !gh pr list
+	amend = commit --amend
+	push-with-lease = push --force-with-lease
+	slog = log --pretty='%C(green)%h%Creset%C(yellow)%d%Creset %s %C(cyan)%ar%Creset'
+	fixup = git-fixup
+	pr = !gh pr checkout
+	pr-list = !gh pr list
