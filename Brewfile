@@ -18,7 +18,7 @@ brew "nvim"
 # Necessary tooling
 brew "go"
 brew "jq"
-brew "yq"
+brew "python-yq"
 brew "ripgrep"
 brew "tmux"
 brew "fzf"
