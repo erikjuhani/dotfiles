@@ -28,6 +28,19 @@ cmd-ctrl-alt-shift-w = ['mode workspace', 'exec-and-forget echo WORKSPACE > $HOM
 cmd-ctrl-alt-shift-f = ['mode focus', 'exec-and-forget echo FOCUS > $HOME/.aerospace.mode']
 cmd-ctrl-alt-shift-r = 'reload-config'
 
+cmd-ctrl-alt-shift-c = '''exec-and-forget
+left=$(tomlq ".gaps.outer.left" $HOME/.aerospace.toml)
+if [ $left -eq 0 ]; then
+  tomlq -i -t ".gaps.outer.left=600" $HOME/.aerospace.toml
+  tomlq -i -t ".gaps.outer.right=600" $HOME/.aerospace.toml
+else
+  tomlq -i -t ".gaps.outer.left=0" $HOME/.aerospace.toml
+  tomlq -i -t ".gaps.outer.right=0" $HOME/.aerospace.toml
+fi
+
+aerospace reload-config
+'''
+
 [mode.focus.binding]
 q = ['mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
 x = ['close-all-windows-but-current', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
