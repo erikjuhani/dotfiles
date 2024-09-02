@@ -27,11 +27,6 @@ brew "eza"
 brew "sqlite"
 brew "node"
 
-# GUI tools
-tap "koekeishiya/formulae"
-brew "koekeishiya/formulae/yabai"
-brew "koekeishiya/formulae/skhd"
-
 # Better cat
 brew "bat"
 
@@ -77,3 +72,5 @@ cask "gimp"
 cask "karabiner-elements"
 ## Browser
 cask "firefox"
+# Window tiling manager
+cask "nikitabobko/tap/aerospace"

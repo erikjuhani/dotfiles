@@ -13,10 +13,6 @@ ln -s "$BASE_PATH/.vimrc" "$HOME/.vimrc"
 rm -f "$HOME/.tmux.conf"
 ln -s "$BASE_PATH/.tmux.conf" "$HOME/.tmux.conf"
 
-# .skhdrc
-rm -f "$HOME/.skhdrc"
-ln -s "$BASE_PATH/.skhdrc" "$HOME/.skhdrc"
-
 # starship.toml
 rm -f "$HOME/.config/starship.toml"
 ln -s "$BASE_PATH/starship.toml" "$HOME/.config/starship.toml"
@@ -29,9 +25,6 @@ ln -s "$BASE_PATH/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
 rm -f "$HOME/.alacritty.toml"
 ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 
-# yabairc
-rm -f "$HOME/.yabairc"
-ln -s "$BASE_PATH/.yabairc" "$HOME/.yabairc"
 
 # nvim
 rm -r "$HOME/.config/nvim"
