@@ -25,6 +25,9 @@ ln -s "$BASE_PATH/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
 rm -f "$HOME/.alacritty.toml"
 ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 
+# aerospace.toml
+rm -f "$HOME/.aerospace.toml"
+ln -s "$BASE_PATH/.aerospace.toml" "$HOME/.aerospace.toml"
 
 # nvim
 rm -r "$HOME/.config/nvim"

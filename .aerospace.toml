@@ -1,0 +1,59 @@
+after-login-command = []
+
+after-startup-command = []
+
+start-at-login = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+
+default-root-container-layout = 'tiles'
+
+default-root-container-orientation = 'auto'
+
+key-mapping.preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =    78
+outer.top =        0
+outer.right =      0
+
+[mode.main.binding]
+cmd-ctrl-alt-shift-w = ['mode workspace', 'exec-and-forget echo WORKSPACE > $HOME/.aerospace.mode']
+cmd-ctrl-alt-shift-f = ['mode focus', 'exec-and-forget echo FOCUS > $HOME/.aerospace.mode']
+cmd-ctrl-alt-shift-r = 'reload-config'
+
+[mode.focus.binding]
+q = ['mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+x = ['close-all-windows-but-current', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+h = 'focus left'
+j = 'focus down'
+k = 'focus up'
+l = 'focus right'
+alt-h = 'move left'
+alt-j = 'move down'
+alt-k = 'move up'
+alt-l = 'move right'
+f = 'fullscreen'
+p = 'layout floating tiling'
+
+[mode.workspace.binding]
+q = ['mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+tab = 'workspace-back-and-forth'
+l = 'workspace next'
+h = 'workspace prev'
+t = ['workspace T', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+b = ['workspace B', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+s = ['workspace S', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+o = ['workspace O', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+z = ['workspace Z', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+shift-t = ['move-node-to-workspace T', 'workspace T', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+shift-b = ['move-node-to-workspace B', 'workspace B', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+shift-s = ['move-node-to-workspace S', 'workspace S', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+shift-o = ['move-node-to-workspace O', 'workspace O', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
+shift-z = ['move-node-to-workspace Z', 'workspace Z', 'mode main', 'exec-and-forget echo MAIN > $HOME/.aerospace.mode']
