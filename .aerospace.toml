@@ -17,7 +17,7 @@ vertical = 0
 
 [gaps.outer]
 left = 0
-bottom = 78
+bottom = 0
 top = 0
 right = 0
 
@@ -26,7 +26,7 @@ right = 0
 cmd-ctrl-alt-shift-w = ["mode workspace", "exec-and-forget echo WORKSPACE > $HOME/.aerospace.mode"]
 cmd-ctrl-alt-shift-f = ["mode focus", "exec-and-forget echo FOCUS > $HOME/.aerospace.mode"]
 cmd-ctrl-alt-shift-r = "reload-config"
-cmd-ctrl-alt-shift-c = "exec-and-forget\nleft=$(tomlq \".gaps.outer.left\" $HOME/.aerospace.toml)\nif [ $left -eq 0 ]; then\n  tomlq -i -t \".gaps.outer.left=600\" $HOME/.aerospace.toml\n  tomlq -i -t \".gaps.outer.right=600\" $HOME/.aerospace.toml\nelse\n  tomlq -i -t \".gaps.outer.left=0\" $HOME/.aerospace.toml\n  tomlq -i -t \".gaps.outer.right=0\" $HOME/.aerospace.toml\nfi\n\naerospace reload-config\n"
+cmd-ctrl-alt-shift-c = "exec-and-forget\n  left=$(tomlq \".gaps.outer.left\" $HOME/.aerospace.toml)\n  if [ $left -eq 0 ]; then\n    screen_width=$(osascript -e 'tell application \"Finder\" to get bounds of window of desktop' | cut -d \",\" -f 3 | tr -d \" \")\n    padding=$((screen_width / 5))\n    tomlq -i -t \".gaps.outer.left=$padding\" $HOME/.aerospace.toml\n    tomlq -i -t \".gaps.outer.right=$padding\" $HOME/.aerospace.toml\n  else\n    tomlq -i -t \".gaps.outer.left=0\" $HOME/.aerospace.toml\n    tomlq -i -t \".gaps.outer.right=0\" $HOME/.aerospace.toml\n  fi\n  aerospace reload-config\n"
 
 [mode.focus.binding]
 q = ["mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
