@@ -48,6 +48,9 @@ brew "sd"
 # Shorter man pages with examples
 brew "tldr"
 
+# xrandr for macos
+brew "displayplacer"
+
 # Benchmarking tool
 brew "hyperfine"
 
