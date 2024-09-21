@@ -22,7 +22,7 @@ local servers = {
   "jsonls",
   "lua_ls",
   "tailwindcss",
-  "tsserver",
+  "ts_ls",
   "yamlls",
 }
 
@@ -52,7 +52,7 @@ local lsp_nmap = function(bufnr)
 end
 
 local on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
+  if client.name == "ts_ls" then
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup_client(client)
   end
@@ -145,7 +145,7 @@ lspconfig.denols.setup {
   end
 }
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   single_file_support = false,
