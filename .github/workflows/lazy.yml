@@ -27,10 +27,22 @@ jobs:
       - name: Run Updates
         id: update
         run: |
+          tmp_logs="$(mktemp)"
           nvim --version
-          nvim --headless "+Lazy! update" +qa!
-          echo "updated_plugins<<EOF" >> $GITHUB_OUTPUT
-          git diff | awk 'NR>6 && /^\+/ { print $2 }' | cut -d'"' -f2 | sed 's/^/- /' >> $GITHUB_OUTPUT
+          nvim --headless "+Lazy! update" +qa! | sed -r 's/\x1B\[[0-9;]*[mK]//g' | sed 's/)\[/)\n[/g' >> "${tmp_logs}"
+
+          updated_plugins="$(git diff .config/nvim/lazy-lock.json | awk 'NR>6 && /^\+/ { print $2 }' | cut -d'"' -f2)"
+
+          print_changelog() {
+            for plugin; do
+              printf "%b" "## ${plugin}\n\n"
+              plugin_changelog="$(grep "^\[${plugin}\].*log" "${tmp_logs}" | tail -n +2 | tail -r | tail -n +2 | tail -r | cut -d\| -f2- | sed -e '/^ $/d' -e 's/^ //' -e 's/^[^ ]*/- `&`/')"
+              printf "%b" "${plugin_changelog}\n\n"
+            done
+          }
+          
+          echo "plugin_changelog<<EOF" >> $GITHUB_OUTPUT
+          print_changelog $updated_plugins >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
@@ -43,4 +55,4 @@ jobs:
           body: |
             Updated plugins:
 
-            ${{ steps.update.outputs.updated_plugins }}
+            ${{ steps.update.outputs.plugin_changelog }}
