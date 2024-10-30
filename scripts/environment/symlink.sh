@@ -29,6 +29,13 @@ ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 rm -f "$HOME/.aerospace.toml"
 ln -s "$BASE_PATH/.aerospace.toml" "$HOME/.aerospace.toml"
 
+# create borders .config directory
+mkdir -p "$HOME/.config/borders"
+
+# borders
+rm -r "$HOME/.config/borders"
+ln -s "$BASE_PATH/.config/borders" "$HOME/.config/borders"
+
 # nvim
 rm -r "$HOME/.config/nvim"
 ln -s "$BASE_PATH/.config/nvim" "$HOME/.config/nvim"
