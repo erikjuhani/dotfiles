@@ -2,9 +2,6 @@
 
 readonly BASE_PATH="$(git rev-parse --show-toplevel)"
 
-# create nvim .config directory
-mkdir -p "$HOME/.config/nvim"
-
 # .vimrc
 rm -f "$HOME/.vimrc"
 ln -s "$BASE_PATH/.vimrc" "$HOME/.vimrc"
@@ -42,6 +39,9 @@ mkdir -p "$HOME/.config/borders"
 # borders
 rm -r "$HOME/.config/borders"
 ln -s "$BASE_PATH/.config/borders" "$HOME/.config/borders"
+
+# create nvim .config directory
+mkdir -p "$HOME/.config/nvim"
 
 # nvim
 rm -r "$HOME/.config/nvim"
