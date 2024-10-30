@@ -5,6 +5,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 default-root-container-layout = "tiles"
 default-root-container-orientation = "auto"
+exec-on-workspace-change = ["/bin/bash", "-c", "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"]
 after-startup-command = ["exec-and-forget sketchybar", "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"]
 
 [key-mapping]
@@ -12,23 +13,24 @@ preset = "qwerty"
 
 [gaps]
 [gaps.inner]
-horizontal = 0
-vertical = 0
+horizontal = 12
+vertical = 12
 
 [gaps.outer]
-left = 0
-bottom = 0
-top = 0
-right = 0
+left = 12
+bottom = 12
+top = 48
+right = 12
 
 [mode]
 [mode.main.binding]
 cmd-ctrl-alt-shift-w = ["mode workspace", "exec-and-forget echo WORKSPACE > $HOME/.aerospace.mode"]
 cmd-ctrl-alt-shift-f = ["mode focus", "exec-and-forget echo FOCUS > $HOME/.aerospace.mode"]
 cmd-ctrl-alt-shift-r = "reload-config"
-cmd-ctrl-alt-shift-c = "exec-and-forget\n  padding=0\n  left=$(tomlq \".gaps.outer.left\" $HOME/.aerospace.toml)\n  if [ $left -eq 0 ]; then\n    screen_width=$(displayplacer list | grep -i resolution: | cut -d ' ' -f 2 | cut -d 'x' -f 1)\n    padding=$((screen_width / 5))\n  fi\n  tomlq -i -t \".gaps.outer.left=$padding\" $HOME/.aerospace.toml\n  tomlq -i -t \".gaps.outer.right=$padding\" $HOME/.aerospace.toml\n  aerospace reload-config\n"
+cmd-ctrl-alt-shift-c = "exec-and-forget\n  padding=12\n  left=$(tomlq \".gaps.outer.left\" $HOME/.aerospace.toml)\n  if [ $left -eq 12 ]; then\n    screen_width=$(displayplacer list | grep -i resolution: | cut -d ' ' -f 2 | cut -d 'x' -f 1)\n    padding=$((screen_width / 5))\n  fi\n  tomlq -i -t \".gaps.outer.left=$padding\" $HOME/.aerospace.toml\n  tomlq -i -t \".gaps.outer.right=$padding\" $HOME/.aerospace.toml\n  aerospace reload-config\n"
 
 [mode.focus.binding]
+r = ["mode main", "reload-config", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
 q = ["mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
 x = ["close-all-windows-but-current", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
 h = "focus left"
