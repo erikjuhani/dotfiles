@@ -78,5 +78,8 @@ cask "firefox"
 # Window tiling manager
 cask "nikitabobko/tap/aerospace"
 
+# Top bar
+tap "FelixKratz/formulae"
+brew "FelixKratz/formulae/sketchybar"
 # Window borders
 brew "FelixKratz/formulae/borders"

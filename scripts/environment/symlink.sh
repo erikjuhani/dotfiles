@@ -29,6 +29,13 @@ ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 rm -f "$HOME/.aerospace.toml"
 ln -s "$BASE_PATH/.aerospace.toml" "$HOME/.aerospace.toml"
 
+# create sketchybar .config directory
+mkdir -p "$HOME/.config/sketchybar"
+
+# sketchybar
+rm -r "$HOME/.config/sketchybar"
+ln -s "$BASE_PATH/.config/sketchybar" "$HOME/.config/sketchybar"
+
 # create borders .config directory
 mkdir -p "$HOME/.config/borders"
 
