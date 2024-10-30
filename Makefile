@@ -1,6 +1,9 @@
 init:
 	./init.sh && ./scripts/environment/symlink.sh
 
+symlink:
+	./scripts/environment/symlink.sh
+
 ssh-key:
 	./scripts/environment/ssh-key.sh $(service) $(author)
 
