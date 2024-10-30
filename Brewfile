@@ -77,3 +77,6 @@ cask "karabiner-elements"
 cask "firefox"
 # Window tiling manager
 cask "nikitabobko/tap/aerospace"
+
+# Window borders
+brew "FelixKratz/formulae/borders"
