@@ -101,7 +101,7 @@ done
 
 sketchybar --add item battery right \
            --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change mouse.entered mouse.exited \
+           --subscribe battery system_woke power_source_change \
            --add item uptime right \
            --set uptime update_freq=43200 script="$PLUGIN_DIR/uptime.sh" \
            --add item clock right \
