@@ -33,6 +33,11 @@ mkdir -p "$HOME/.config/sketchybar"
 rm -r "$HOME/.config/sketchybar"
 ln -s "$BASE_PATH/.config/sketchybar" "$HOME/.config/sketchybar"
 
+# sketchybar-app-font
+rm -f "$HOME/Library/Fonts/sketchybar-app-font.ttf"
+# Symlink does not work with fonts
+cp "$BASE_PATH/fonts/sketchybar-app-font.ttf" "$HOME/Library/Fonts/sketchybar-app-font.ttf"
+
 # create borders .config directory
 mkdir -p "$HOME/.config/borders"
 
