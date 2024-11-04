@@ -23,6 +23,8 @@ shm get erikjuhani/ql
 shm get erikjuhani/hop
 # git fixup util
 shm get erikjuhani/git-fixup
+# personal task cli util
+shm get erikjuhani/tomb
 
 if ! command -v "brew" >/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

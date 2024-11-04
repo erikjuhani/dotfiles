@@ -109,6 +109,11 @@ sketchybar --add item battery right \
            --add item aerospace-mode right \
            --set aerospace-mode icon.drawing=off update_freq=1 script="$PLUGIN_DIR/aerospace-mode.sh"
 
+sketchybar --add item tomb right \
+           --set tomb update_freq=300 script="$PLUGIN_DIR/tomb.sh" \
+           --add item tomb.completed right \
+           --add item tomb.progress right \
+           --add item tomb.open right
  
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
