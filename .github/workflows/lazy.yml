@@ -45,6 +45,23 @@ jobs:
           print_changelog $updated_plugins >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Run Tests
+        id: test
+        run: |
+          # Test for bootup errors
+          # Simple way to see if some plugin update might break
+          tmp_err_logs="$(mktemp)"
+
+          # Sleep for 5 seconds to catch async errors
+          nvim --headless "+:silent !sleep 5" +:qa! 2> "${tmp_err_logs}"
+
+          if grep -q Error "${tmp_err_logs}"; then
+            echo "Error encountered while booting nvim"
+            echo "Error log:"
+            cat "${tmp_err_logs}"
+            exit 1
+          fi
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
