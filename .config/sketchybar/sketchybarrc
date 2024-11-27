@@ -11,8 +11,8 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # https://felixkratz.github.io/SketchyBar/config/bar
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
-sketchybar --bar position=top height=30 color=0xf0272e33 \
-  corner_radius=10 margin=10 y_offset=6 border_width=2 border_color=0xf0d3c6aa shadow=true \
+sketchybar --bar position=top height=30 color=0xa0272e33 \
+  corner_radius=10 margin=10 y_offset=6 shadow=true \
   font_smoothing=true
 
 # sketchybar --bar "${SB_BAR[@]}" --default "${SB_DEFAULT[@]}"
