@@ -2,8 +2,6 @@ name: Test Neovim Boot
 
 on:
   push:
-  pull_request:
-    types: [opened, reopened, edited]
   workflow_dispatch:
 
 jobs:

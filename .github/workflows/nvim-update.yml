@@ -6,6 +6,10 @@ on:
     - cron: "0 23 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update:
     name: Lazy update
@@ -49,6 +53,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           base: main
+          token: ${{ secrets.TOKEN }}
           branch: lazy-update
           commit-message: Update lazy-lock
           title: Update lazy-lock
