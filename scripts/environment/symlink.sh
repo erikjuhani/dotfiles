@@ -22,6 +22,9 @@ ln -s "$BASE_PATH/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
 rm -f "$HOME/.alacritty.toml"
 ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 
+# create ghostty .config directory
+mkdir -p "$HOME/.config/ghostty"
+
 # ghostty
 rm -f "$HOME/.config/ghostty/config"
 ln -s "$BASE_PATH/.config/ghostty/config" "$HOME/.config/ghostty/config"
