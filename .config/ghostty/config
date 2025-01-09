@@ -1,0 +1,9 @@
+theme=Everforest Dark - Hard
+background=272e33
+font-family=BlexMono Nerd Font Mono
+font-size=14
+macos-titlebar-style=hidden
+command=/opt/homebrew/bin/fish -l -c "tmux attach || tmux"
+shell-integration=fish
+keybind=global:alt+r=reload_config
+confirm-close-surface=false

@@ -22,6 +22,10 @@ ln -s "$BASE_PATH/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
 rm -f "$HOME/.alacritty.toml"
 ln -s "$BASE_PATH/.alacritty.toml" "$HOME/.alacritty.toml"
 
+# ghostty
+rm -f "$HOME/.config/ghostty/config"
+ln -s "$BASE_PATH/.config/ghostty/config" "$HOME/.config/ghostty/config"
+
 # aerospace.toml
 rm -f "$HOME/.aerospace.toml"
 ln -s "$BASE_PATH/.aerospace.toml" "$HOME/.aerospace.toml"

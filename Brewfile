@@ -7,6 +7,7 @@ brew "fish"
 brew "fisher"
 brew "starship"
 cask "alacritty", args: { no_quarantine: true }
+cask "ghostty"
 
 # Git
 brew "git"
