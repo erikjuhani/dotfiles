@@ -89,7 +89,7 @@ for sid in $(aerospace list-workspaces --all); do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         background.color=0x22ffffff \
-        background.corner_radius=2 \
+        background.corner_radius=4 \
         background.height=20 \
         background.y_offset=-1 \
         background.drawing=on \
@@ -105,9 +105,7 @@ sketchybar --add alias "Control Center,Battery" right \
 sketchybar --add item uptime right \
            --set uptime update_freq=43200 script="$PLUGIN_DIR/uptime.sh" label.padding_right=0 label.y_offset=1 \
            --add item clock right \
-           --set clock update_freq=1 icon=– script="$PLUGIN_DIR/clock.sh" \
-           --add item aerospace-mode right \
-           --set aerospace-mode icon.drawing=off update_freq=1 script="$PLUGIN_DIR/aerospace-mode.sh"
+           --set clock update_freq=1 icon.drawing=off script="$PLUGIN_DIR/clock.sh" \
 
 sketchybar --add item tomb right \
            --set tomb update_freq=300 script="$PLUGIN_DIR/tomb.sh" \
