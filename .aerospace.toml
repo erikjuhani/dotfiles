@@ -1,6 +1,5 @@
 after-login-command = []
-after-startup-command = ["exec-and-forget sketchybar", "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"]
-exec-on-workspace-change = ["/bin/bash", "-c", "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"]
+after-startup-command = ["exec-and-forget sketchybar", "exec-and-forget borders active_color=0xb0ffffff width=8.0"]
 start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -19,43 +18,35 @@ vertical = 12
 [gaps.outer]
 left = 12
 bottom = 12
-top = 48
+top = 46
 right = 12
 
-[mode]
 [mode.main.binding]
-cmd-ctrl-alt-shift-w = ["mode workspace", "exec-and-forget echo WORKSPACE > $HOME/.aerospace.mode"]
-cmd-ctrl-alt-shift-f = ["mode focus", "exec-and-forget echo FOCUS > $HOME/.aerospace.mode"]
 cmd-ctrl-alt-shift-r = "reload-config"
 cmd-ctrl-alt-shift-c = "exec-and-forget\n  padding=12\n  left=$(tomlq \".gaps.outer.left\" $HOME/.aerospace.toml)\n  if [ $left -eq 12 ]; then\n    screen_width=$(displayplacer list | grep -i resolution: | cut -d ' ' -f 2 | cut -d 'x' -f 1)\n    padding=$((screen_width / 5))\n  fi\n  tomlq -i -t \".gaps.outer.left=$padding\" $HOME/.aerospace.toml\n  tomlq -i -t \".gaps.outer.right=$padding\" $HOME/.aerospace.toml\n  aerospace reload-config\n"
-
-[mode.focus.binding]
-r = ["mode main", "reload-config", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-q = ["mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-x = ["close-all-windows-but-current", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-h = "focus left"
-j = "focus down"
-k = "focus up"
-l = "focus right"
-alt-h = "move left"
-alt-j = "move down"
-alt-k = "move up"
-alt-l = "move right"
-f = "fullscreen"
-p = "layout floating tiling"
-
-[mode.workspace.binding]
-q = ["mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-tab = "workspace-back-and-forth"
-l = "workspace next"
-h = "workspace prev"
-t = ["workspace T", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-b = ["workspace B", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-s = ["workspace S", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-o = ["workspace O", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-z = ["workspace Z", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-shift-t = ["move-node-to-workspace T", "workspace T", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-shift-b = ["move-node-to-workspace B", "workspace B", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-shift-s = ["move-node-to-workspace S", "workspace S", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-shift-o = ["move-node-to-workspace O", "workspace O", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
-shift-z = ["move-node-to-workspace Z", "workspace Z", "mode main", "exec-and-forget echo MAIN > $HOME/.aerospace.mode"]
+cmd-ctrl-alt-shift-h = "focus left"
+cmd-ctrl-alt-shift-j = "focus down"
+cmd-ctrl-alt-shift-k = "focus up"
+cmd-ctrl-alt-shift-l = "focus right"
+cmd-ctrl-alt-shift-p = "layout floating tiling"
+cmd-ctrl-alt-shift-z = "fullscreen"
+cmd-ctrl-alt-shift-left = "move left"
+cmd-ctrl-alt-shift-down = "move down"
+cmd-ctrl-alt-shift-up = "move up"
+cmd-ctrl-alt-shift-right = "move right"
+cmd-ctrl-alt-shift-t = "workspace-back-and-forth"
+cmd-ctrl-alt-shift-q = "workspace prev --wrap-around"
+cmd-ctrl-alt-shift-w = "workspace next --wrap-around"
+cmd-ctrl-alt-shift-x = "close-all-windows-but-current"
+cmd-ctrl-alt-shift-1 = "workspace 1"
+cmd-ctrl-alt-shift-2 = "workspace 2"
+cmd-ctrl-alt-shift-3 = "workspace 3"
+cmd-ctrl-alt-shift-4 = "workspace 4"
+cmd-ctrl-alt-shift-5 = "workspace 5"
+alt-shift-w = ["move-node-to-workspace next --wrap-around", "workspace next"]
+alt-shift-q = ["move-node-to-workspace prev --wrap-around", "workspace prev"]
+alt-shift-1 = ["move-node-to-workspace 1", "workspace 1"]
+alt-shift-2 = ["move-node-to-workspace 2", "workspace 2"]
+alt-shift-3 = ["move-node-to-workspace 3", "workspace 3"]
+alt-shift-4 = ["move-node-to-workspace 4", "workspace 4"]
+alt-shift-5 = ["move-node-to-workspace 5", "workspace 5"]
