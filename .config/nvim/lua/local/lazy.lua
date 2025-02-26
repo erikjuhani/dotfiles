@@ -16,16 +16,6 @@ local plugins = {
   { "nvim-lua/popup.nvim",   lazy = false },
   { "nvim-lua/plenary.nvim", lazy = false },
 
-  -- cache
-  {
-    "lewis6991/impatient.nvim",
-    lazy = false,
-    priority = 1500,
-    config = function()
-      require("impatient")
-    end,
-  },
-
   "nvim-tree/nvim-web-devicons",
 
   -- filesystem manipulation in buffer
