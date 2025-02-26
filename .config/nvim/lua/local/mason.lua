@@ -67,11 +67,6 @@ if not ok then
   return
 end
 
-local ok, rt = pcall(require, "rust-tools")
-if not ok then
-  return
-end
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "go", "gomod" },
   callback = function()
@@ -80,12 +75,11 @@ vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("GoFileType", {})
 })
 
-rt.setup({
+vim.g.rustaceanvim = {
   server = {
-    capabilities = capabilities,
-    on_attach = on_attach
-  },
-})
+    on_attach = on_attach,
+  }
+}
 
 lspconfig.eslint.setup {
   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
