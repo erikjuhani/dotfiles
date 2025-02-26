@@ -28,6 +28,16 @@ local plugins = {
     end,
   },
 
+  -- Highlighted TODO comments
+  {
+    "folke/todo-comments.nvim",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup({})
+    end
+  },
+
   -- diagnostics and formatting
   {
     "creativenull/efmls-configs-nvim",
