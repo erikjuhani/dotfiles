@@ -1,5 +1,7 @@
 after-login-command = []
 after-startup-command = ["exec-and-forget sketchybar", "exec-and-forget borders active_color=0xb0ffffff width=8.0"]
+exec-on-workspace-change = ["/bin/sh", "-c", "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE"]
+on-focus-changed = ["exec-and-forget sketchybar --trigger aerospace_workspace_change"]
 start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -10,7 +12,6 @@ default-root-container-orientation = "auto"
 [key-mapping]
 preset = "qwerty"
 
-[gaps]
 [gaps.inner]
 horizontal = 12
 vertical = 12
