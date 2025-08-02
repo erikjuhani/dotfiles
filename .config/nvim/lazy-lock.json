@@ -6,7 +6,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "efmls-configs-nvim": { "branch": "main", "commit": "49ce96ec74f8c484c7d2a0bd9f5afffc8cd18151" },
-  "everforest": { "branch": "master", "commit": "96052edcb763e78c7f6adfcb8693d5fef8c903db" },
+  "everforest": { "branch": "master", "commit": "d84d9ec896564730855c3f6705dc9a734c74a344" },
   "go.nvim": { "branch": "master", "commit": "28d9618bfe4385d3af60fed15a4c9f9445ae1f10" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lightline.vim": { "branch": "master", "commit": "e358557e1a9f9fc860416c8eb2e34c0404078155" },
