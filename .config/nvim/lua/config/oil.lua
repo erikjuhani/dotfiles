@@ -1,7 +1,7 @@
-local ok, oil = pcall(require, "oil")
-if not ok then
-  return
-end
+local oil = require("oil")
+local keymap = require("config.keymap")
+
+keymap.set("<Leader>e", oil.toggle_float)
 
 oil.setup({
   view_options = {

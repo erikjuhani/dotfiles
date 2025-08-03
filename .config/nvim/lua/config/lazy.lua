@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -13,18 +14,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  { "nvim-lua/popup.nvim",   lazy = false },
-  { "nvim-lua/plenary.nvim", lazy = false },
-
   "nvim-tree/nvim-web-devicons",
 
-  -- filesystem manipulation in buffer
   {
-    'stevearc/oil.nvim',
+    "nvim-lua/popup.nvim",
+    lazy = false
+  },
+
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = false
+  },
+
+  -- Filesystem manipulation in buffer
+  {
+    "stevearc/oil.nvim",
     opts = {},
+    lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("local.oil")
+      require("config.oil")
     end,
   },
 
@@ -38,17 +47,19 @@ local plugins = {
     end
   },
 
-  -- diagnostics and formatting
+  -- Diagnostics and formatting
   {
     "creativenull/efmls-configs-nvim",
     lazy = false,
-    config = function()
-      require("local.efmls")
-    end,
+    version = 'v1.x.x',
+    dependencies = { 'neovim/nvim-lspconfig' },
   },
 
-  -- git commands
-  { "tpope/vim-fugitive",     lazy = false },
+  -- Git commands
+  {
+    "tpope/vim-fugitive",
+    lazy = false
+  },
 
   -- Statusline
   {
@@ -56,7 +67,7 @@ local plugins = {
     lazy = false,
     dependencies = { "sainnhe/everforest" },
     config = function()
-      require("local.lightline")
+      require("config.lightline")
     end,
   },
 
@@ -69,19 +80,20 @@ local plugins = {
     end,
   },
 
-  -- style
+  -- Theme & Colorscheme
   {
     "sainnhe/everforest",
     priority = 1000,
     lazy = false,
     config = function()
-      require("local.everforest")
+      require("config.everforest")
     end,
   },
 
-  -- cmp plugins
+  -- Cmp plugins
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -90,23 +102,34 @@ local plugins = {
       "L3MON4D3/LuaSnip",
     },
     config = function()
-      require("local.cmp")
+      require("config.cmp")
     end,
-    event = 'InsertEnter',
   },
 
-  "ray-x/lsp_signature.nvim",
+  -- Function signature paramater highlight
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = "rounded"
+      },
+      floating_window_off_y = -1,
+      max_height = 3,
+      hint_enable = false,
+    }
+  },
 
-  -- lsp
+  -- LSP configs
   "neovim/nvim-lspconfig",
-  "jose-elias-alvarez/nvim-lsp-ts-utils",
 
   {
     "williamboman/mason.nvim",
     run = ":MasonUpdate",
     lazy = false,
     config = function()
-      require("local.mason")
+      require("config.mason")
     end,
   },
 
@@ -115,7 +138,6 @@ local plugins = {
     dependencies = { "williamboman/mason.nvim" },
   },
 
-  -- telescope
   {
     "nvim-telescope/telescope.nvim",
     event = 'VimEnter',
@@ -135,17 +157,16 @@ local plugins = {
     cmd = "Telescope",
     build = "make",
     config = function()
-      require("local.telescope")
+      require("config.telescope")
     end,
   },
 
-  -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufRead",
+    event = "VeryLazy",
     run = ":TSUpdate",
     config = function()
-      require("local.treesitter")
+      require("config.treesitter")
     end,
   },
 
@@ -154,19 +175,30 @@ local plugins = {
       version = "*", -- Use for stability; omit to use `main` branch for the latest features
       event = "VeryLazy",
       config = function()
-          require("nvim-surround").setup({
-              -- Configuration here, or leave empty to use defaults
-          })
+          require("nvim-surround").setup()
       end
   },
 
-  -- Motion
-  { "chaoren/vim-wordmotion", lazy = false },
-  { "FooSoft/vim-argwrap",    lazy = false },
+  {
+    "chaoren/vim-wordmotion",
+    lazy = false
+  },
 
-  -- Language specifics
+  {
+    "FooSoft/vim-argwrap",
+    lazy = false,
+    config = function()
+      require("config.arg-wrap")
+    end
+  },
+
   "ray-x/go.nvim",
-  { "mrcjkb/rustaceanvim", version = '^5', lazy = false },
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = '^6',
+    lazy = false
+  },
 }
 
 -- Use a protected call so we don"t error out on first use
