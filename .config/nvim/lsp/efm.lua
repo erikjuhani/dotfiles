@@ -1,6 +1,7 @@
 local shellcheck = require("efmls-configs.linters.shellcheck")
 local actionlint = require("efmls-configs.linters.actionlint")
 local prettier = require("efmls-configs.formatters.prettier")
+local jq = require("efmls-configs.formatters.jq")
 local shfmt = require("efmls-configs.formatters.shfmt")
 local rustfmt = require("efmls-configs.formatters.rustfmt")
 local goimports = require("efmls-configs.formatters.goimports")
@@ -14,8 +15,8 @@ local local_shfmt = {
 }
 
 local languages = {
-  json = { prettier },
   yaml = { actionlint },
+  json = { prettier, jq },
   javascript = { prettier },
   typescript = { prettier },
   typescriptreact = { prettier },
