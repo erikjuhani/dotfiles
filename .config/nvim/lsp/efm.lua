@@ -6,7 +6,6 @@ local shfmt = require("efmls-configs.formatters.shfmt")
 local rustfmt = require("efmls-configs.formatters.rustfmt")
 local goimports = require("efmls-configs.formatters.goimports")
 local gofmt = require("efmls-configs.formatters.gofmt")
-local lspconfig = require("lspconfig")
 
 local local_shfmt = {
   formatCommand = string.format("%s -i 2 -ci -filename %s -", shfmt.formatCommand:match("^([^%s]+)%s"),
@@ -40,7 +39,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
-return vim.tbl_deep_extend('force', lspconfig.efm, {
+return vim.lsp.config('efm', {
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true },
   settings = {
