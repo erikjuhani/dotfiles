@@ -10,6 +10,6 @@ return {
   "jsonls",
   "lua_ls",
   "tailwindcss",
-  "vtsls",
+  "ts_ls",
   "yamlls"
 }
