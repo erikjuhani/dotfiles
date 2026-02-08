@@ -12,6 +12,10 @@
 
 # set -x PATH $PATH /usr/local/go/bin $GOPATH/bin
 
+set -gx LANG en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
+set -gx LC_CTYPE en_US.UTF-8
+
 # Set homebrew bin to path
 set -gx PATH /opt/homebrew/bin $PATH
 
